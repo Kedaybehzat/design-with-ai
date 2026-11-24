@@ -32,7 +32,7 @@ A pill track with pill options. The active option gets a raised fill. Each optio
 
 ## Stat tiles
 
-Three or four tiles in a row. Each has a label, a value with a smaller muted unit, and one small visual: a bar strip, or a meter with a marker. A tile never holds more than one number.
+Three or four tiles in a row. Each has a label, a value with a smaller muted unit, and one small visual: a bar strip, or a meter with a marker. A tile never holds more than one number, and the number is the largest thing in it. Put the visual at the bottom so every tile in the row has the same baseline.
 
 ```css
 .tiles  { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
@@ -43,7 +43,7 @@ Three or four tiles in a row. Each has a label, a value with a smaller muted uni
 .unit   { font-size: var(--size-2); color: var(--text-3); margin-left: 4px; font-weight: 400; }
 ```
 
-- **Bar strip:** 20 to 30 thin bars (3 px wide, 2 px gap) in `--bar` and `--bar-soft`. The latest bar is `--accent`. This is the only accent in the tile.
+- **Bar strip:** 20 to 30 bars, 4 px wide with a 2 px gap, in a 28 px tall row aligned to the bottom. Each bar's height maps to a real value (for example events per day); a zero is a 3 px stub in `--bar-soft`, never a dot. Older bars are `--bar-soft`, recent ones `--bar`, the latest one `--accent`. This is the only accent in the tile.
 - **Meter:** a 4 px track (`--track`) with a fill (`--text-2`) and a 1 px vertical marker for the limit or target.
 
 ## Data table
