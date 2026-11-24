@@ -2,7 +2,7 @@
 
 Component recipes for the base style. Every value comes from `theme.css`. Copy the structure, then adapt the content to the brief. Do not copy these comments into the product.
 
-**Lines and backgrounds.** A border is always `1px solid var(--line)` (or `--line-strong` / `--field-line`) on all sides it is drawn on, with the same color end to end. No `border-image`, no gradient borders, no `mask-image` or pseudo-element fades on edges. Backgrounds are a flat `background: var(--…)`: no `radial-gradient`, dot or grid patterns, noise images or blur.
+**Lines and backgrounds.** A border is always `1px solid var(--line)` (or `--line-strong` / `--field-line`) on all sides it is drawn on, with the same color end to end. No colored stripe on one side (`border-left: 3px solid …`, `::before` bars), no `border-image`, no gradient borders, no `mask-image` or pseudo-element fades on edges. Backgrounds are a flat `background: var(--…)`: no `radial-gradient`, dot or grid patterns, noise images or blur.
 
 ## App shell
 
@@ -76,12 +76,11 @@ The main content of a list screen. Rows are flat, separated by hairlines, and th
 
 ## Selected / expanded row
 
-Selecting a row opens its detail in place instead of on a new page, when the detail is short. The selection stays **neutral**: a one-step surface change and a thin accent mark on the leading edge. The accent never fills the row or outlines it.
+Selecting a row opens its detail in place instead of on a new page, when the detail is short. The selection stays **neutral**: a one-step surface change, and the row's status circle switches to its active icon. No accent fill, no accent outline, no colored stripe on any side.
 
 ```css
-.row[aria-selected='true'] { background: var(--hover); position: relative; }
-.row[aria-selected='true']::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px;
-                                      border-radius: 2px; background: var(--accent); }
+.row[aria-selected='true'] { background: var(--hover); }
+.row[aria-selected='true'] .status { background: var(--text); color: var(--panel); }   /* the status circle inverts */
 .row-detail { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-3) var(--space-4) 44px;
               background: var(--inset); border-top: 1px solid var(--line); }
 ```

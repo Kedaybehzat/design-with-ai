@@ -1,7 +1,7 @@
 ---
 name: ui-design
 description: Designs web app screens in React that look intentional instead of AI-generic, using a calm, data-first base style with dark and light themes. Use whenever you are asked to design, build, restyle or critique a screen, web app, dashboard, landing page or component.
-version: 0.4.0
+version: 0.4.1
 owner: "@Team1-Turkiye"
 tags: [ui, ux, design, react, workshop]
 ---
@@ -35,7 +35,7 @@ If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TOD
 
 The base style is calm and data-first. It looks like a precise instrument, not a poster. Hold on to these seven ideas; they are what make it look designed.
 
-1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point, in small marks: a bar, a dot, a 2 px edge, a chip, a focus ring. The accent never fills a row, a panel or a card. If you take the accent away, the screen still works.
+1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point, in small marks: a data bar, a status dot, a chip, a focus ring. The accent never fills a row, a panel or a card, and never runs along their sides. If you take the accent away, the screen still works.
 2. **A full-screen product, not a card.** The app fills the browser window: a full-width top bar, an optional sidebar, and a main area that uses the width. Never put the whole app in one centered, rounded card on an empty background; that reads as a screenshot, not a platform.
 3. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows. Every line is solid and the same color along its whole length: it never fades, tapers or glows. Backgrounds are flat colors with no texture.
 4. **Quiet type, loud numbers.** One family (from the list in step 2). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
@@ -161,6 +161,7 @@ These are the signatures of an AI-generated interface. Do not use them unless `D
 - The whole app inside one centered, rounded card with empty background around it.
 - Every item in its own card; cards inside cards.
 - Glassmorphism, glows, drop shadows on everything.
+- Colored side stripes: a thick or colored `border-left` (or a `::before` bar) on cards, rows, list items, alerts or quotes.
 - Borders or dividers that fade out (gradient borders, `mask-image` fades, a line that disappears toward one end or corner).
 - Textured backgrounds: dot grids, line grids, noise or grain overlays, radial spotlights behind content.
 - Every section centered, every card the same size.
@@ -179,7 +180,8 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 - [ ] Body text ≥ 4.5:1, large text, icons and input borders ≥ 3:1, in **both** themes.
 - [ ] One type family (unless `DESIGN.md` says two); five sizes or fewer; numbers in tabular figures.
 - [ ] Spacing follows the 4 px scale; related items are grouped by proximity.
-- [ ] The accent appears only as small marks (bar, dot, 2 px edge, chip, focus ring) on live, selected or current things; it fills no row, panel or card.
+- [ ] The accent appears only as small marks (data bar, status dot, chip, focus ring) on live, selected or current things; it fills no row, panel or card.
+- [ ] No card, row, panel or callout has a colored stripe on one side; borders are the same neutral line on every side.
 - [ ] The dials, font and layout are stated with a reason in the report.
 - [ ] Click targets ≥ 32 px, the primary ≥ 44 px; hover, focus, disabled states are visible.
 - [ ] Empty, error and success states exist.
@@ -200,8 +202,9 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 | Looks flat and unfinished. | Add the layer step (panel → inset), hairlines, tabular numbers and one small visual per tile. |
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |
-| Accent color is everywhere. | Accent only as small marks: a 2 px edge on the selected row, the latest data point, focus. Selected rows use `--hover`. The primary button uses `--btn`. |
-| A big blue (or any accent) block on the selected row. | Replace the tint and outline with `--hover` and a 2 px accent edge; put the expanded detail on `--inset`. |
+| Accent color is everywhere. | Accent only as small marks: the latest data point, a status dot, focus. Selected rows use `--hover`. The primary button uses `--btn`. |
+| A big blue (or any accent) block on the selected row. | Replace the tint and outline with `--hover`; put the expanded detail on `--inset`. |
+| A colored stripe on the left of a card, row or alert. | Remove it. Show state with a word, an icon or a status dot inside the content, and keep the border neutral on every side. |
 | "Looks the same as last time." | Revisit step 2: change the dials and the layout to fit this product's persona and job. |
 | Light theme looks washed out. | Muted text is `--text-2` / `--text-3`, never lighter; lines are `--line`, not lighter. |
 | Label and value run together (e.g. "DüzenleyenYazılım"). | Put the label above the value, or give the label column a fixed width and a 16 px gap. |
