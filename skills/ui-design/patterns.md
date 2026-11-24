@@ -2,6 +2,8 @@
 
 Component recipes for the base style. Every value comes from `theme.css`. Copy the structure, then adapt the content to the brief. Do not copy these comments into the product.
 
+**Lines and backgrounds.** A border is always `1px solid var(--line)` (or `--line-strong` / `--field-line`) on all sides it is drawn on, with the same color end to end. No `border-image`, no gradient borders, no `mask-image` or pseudo-element fades on edges. Backgrounds are a flat `background: var(--…)`: no `radial-gradient`, dot or grid patterns, noise images or blur.
+
 ## App shell
 
 The app fills the whole browser window, edge to edge and top to bottom, like a real product. It is **never** a single card floating in the middle of the page with empty canvas around it.

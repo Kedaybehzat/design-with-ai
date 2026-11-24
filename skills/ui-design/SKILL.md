@@ -1,7 +1,7 @@
 ---
 name: ui-design
 description: Designs web app screens in React that look intentional instead of AI-generic, using a calm, data-first base style with dark and light themes. Use whenever you are asked to design, build, restyle or critique a screen, web app, dashboard, landing page or component.
-version: 0.3.1
+version: 0.3.2
 owner: "@Team1-Turkiye"
 tags: [ui, ux, design, react, workshop]
 ---
@@ -37,7 +37,7 @@ The base style is calm and data-first. It looks like a precise instrument, not a
 
 1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point. If you take the accent away, the screen still works.
 2. **A full-screen product, not a card.** The app fills the browser window: a full-width top bar, an optional sidebar, and a main area that uses the width. Never put the whole app in one centered, rounded card on an empty background; that reads as a screenshot, not a platform.
-3. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows.
+3. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows. Every line is solid and the same color along its whole length: it never fades, tapers or glows. Backgrounds are flat colors with no texture.
 4. **Quiet type, loud numbers.** One family (Geist). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
 5. **Rows, not cards.** Collections are dense tables or lists with hairline dividers and a whole-row click target. Cards are for summaries (stat tiles), not for every item.
 6. **Small, honest visuals.** Inline bar strips, meters with a target marker, a dashed threshold line, a hatched bar for a failed or timed-out value. No decorative illustration or stock imagery.
@@ -148,6 +148,8 @@ These are the signatures of an AI-generated interface. Do not use them unless `D
 - The whole app inside one centered, rounded card with empty background around it.
 - Every item in its own card; cards inside cards.
 - Glassmorphism, glows, drop shadows on everything.
+- Borders or dividers that fade out (gradient borders, `mask-image` fades, a line that disappears toward one end or corner).
+- Textured backgrounds: dot grids, line grids, noise or grain overlays, radial spotlights behind content.
 - Every section centered, every card the same size.
 - Avatar circles with initials used as decoration.
 - Invented vanity stats and testimonials ("10K+ happy users").
@@ -169,6 +171,7 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 - [ ] Empty, error and success states exist.
 - [ ] Form fields have visible labels and error messages.
 - [ ] The rendered screens were looked at in both themes: no overlapping, clipped or colliding text.
+- [ ] Every border and divider is a solid 1 px line in one token color; every background is a flat token color.
 - [ ] No item from **Anti-patterns** is present.
 - [ ] Content is realistic and in the product's language.
 - [ ] Every rule in **Team learnings** below is followed.
@@ -179,6 +182,7 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 | --- | --- |
 | "Looks like every other AI app." | Remove gradients, emoji and shadows first; then reduce the accent to one job. |
 | Looks like a widget or a screenshot, not a platform. | Remove the outer card and its margin; make the top bar full width and let the main area fill the window. |
+| Feels "AI-made" even without gradients. | Look for fading borders, dot or grid backgrounds, glows and noise; replace them with flat surfaces and solid `--line` borders. |
 | Looks flat and unfinished. | Add the layer step (panel → inset), hairlines, tabular numbers and one small visual per tile. |
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |
