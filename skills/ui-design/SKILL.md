@@ -1,7 +1,7 @@
 ---
 name: ui-design
 description: Designs web app screens in React that look intentional instead of AI-generic, using a calm, data-first base style with dark and light themes. Use whenever you are asked to design, build, restyle or critique a screen, web app, dashboard, landing page or component.
-version: 0.3.0
+version: 0.3.1
 owner: "@Team1-Turkiye"
 tags: [ui, ux, design, react, workshop]
 ---
@@ -33,16 +33,17 @@ If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TOD
 
 ## Base style
 
-The base style is calm and data-first. It looks like a precise instrument, not a poster. Hold on to these six ideas; they are what make it look designed.
+The base style is calm and data-first. It looks like a precise instrument, not a poster. Hold on to these seven ideas; they are what make it look designed.
 
 1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point. If you take the accent away, the screen still works.
-2. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows.
-3. **Quiet type, loud numbers.** One family (Geist). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
-4. **Rows, not cards.** Collections are dense tables or lists with hairline dividers and a whole-row click target. Cards are for summaries (stat tiles), not for every item.
-5. **Small, honest visuals.** Inline bar strips, meters with a target marker, a dashed threshold line, a hatched bar for a failed or timed-out value. No decorative illustration or stock imagery.
-6. **Pills and one primary.** Buttons, chips and segmented controls are pill-shaped. Every screen has one filled primary button; every other action is a ghost button.
+2. **A full-screen product, not a card.** The app fills the browser window: a full-width top bar, an optional sidebar, and a main area that uses the width. Never put the whole app in one centered, rounded card on an empty background; that reads as a screenshot, not a platform.
+3. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows.
+4. **Quiet type, loud numbers.** One family (Geist). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
+5. **Rows, not cards.** Collections are dense tables or lists with hairline dividers and a whole-row click target. Cards are for summaries (stat tiles), not for every item.
+6. **Small, honest visuals.** Inline bar strips, meters with a target marker, a dashed threshold line, a hatched bar for a failed or timed-out value. No decorative illustration or stock imagery.
+7. **Pills and one primary.** Buttons, chips and segmented controls are pill-shaped. Every screen has one filled primary button; every other action is a ghost button.
 
-Both themes use the same token names. Dark: near-black panel, inset tiles darker than the panel. Light: white panel on a warm off-white canvas, inset tiles a shade darker than white. Never use pure `#000000`.
+Both themes use the same token names. Dark: near-black canvas and bars, inset tiles darker than the panel. Light: white bars and panels on a warm off-white canvas, inset tiles a shade darker than white. Never use pure `#000000`.
 
 ## Steps
 
@@ -128,7 +129,7 @@ Apply the fixes. Then report to the user in this order:
 - Every spacing value comes from the 4 px scale.
 - Proximity: space inside a group is smaller than space between groups.
 - Align to a small number of edges. Left-align text; right-align numbers.
-- Content width is capped (around 1200 px); do not stretch a table across a 2560 px screen.
+- The app uses the full window. Cap the width only of reading text and forms (about 720 px); let tables, boards and panes grow with grid columns.
 
 ### Interaction
 
@@ -144,6 +145,7 @@ These are the signatures of an AI-generated interface. Do not use them unless `D
 - Purple-to-blue (or any rainbow) gradients on backgrounds, buttons or text.
 - Emoji used as icons.
 - A generic hero: big gradient headline, vague subtitle, two buttons.
+- The whole app inside one centered, rounded card with empty background around it.
 - Every item in its own card; cards inside cards.
 - Glassmorphism, glows, drop shadows on everything.
 - Every section centered, every card the same size.
@@ -156,6 +158,7 @@ These are the signatures of an AI-generated interface. Do not use them unless `D
 
 The design is done when every line is true. Write ✅ or ❌ next to each in your report.
 
+- [ ] The app fills the window (full-width top bar, main area uses the width); it is not one floating card.
 - [ ] Each screen has one clear most-important element and one primary action.
 - [ ] All colors, fonts and spacings come from tokens.
 - [ ] Body text ≥ 4.5:1, large text, icons and input borders ≥ 3:1, in **both** themes.
@@ -175,6 +178,7 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 | Symptom | Fix |
 | --- | --- |
 | "Looks like every other AI app." | Remove gradients, emoji and shadows first; then reduce the accent to one job. |
+| Looks like a widget or a screenshot, not a platform. | Remove the outer card and its margin; make the top bar full width and let the main area fill the window. |
 | Looks flat and unfinished. | Add the layer step (panel → inset), hairlines, tabular numbers and one small visual per tile. |
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |

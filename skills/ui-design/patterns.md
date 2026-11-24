@@ -4,18 +4,24 @@ Component recipes for the base style. Every value comes from `theme.css`. Copy t
 
 ## App shell
 
-One outer panel holds the screen. It sits on the canvas with room around it, and its corners are the largest radius in the product.
+The app fills the whole browser window, edge to edge and top to bottom, like a real product. It is **never** a single card floating in the middle of the page with empty canvas around it.
 
 ```css
-.shell   { max-width: 1200px; margin: var(--space-7) auto; padding: var(--space-5);
-           background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); }
-.topbar  { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
-           margin-bottom: var(--space-5); }
+.app     { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; background: var(--canvas); }
+.topbar  { position: sticky; top: 0; z-index: 10; height: 56px; display: flex; align-items: center;
+           justify-content: space-between; gap: var(--space-4); padding: 0 var(--space-5);
+           background: var(--panel); border-bottom: 1px solid var(--line); }
+.body    { display: grid; grid-template-columns: 232px 1fr; min-height: 0; }      /* with a sidebar */
+.sidebar { background: var(--panel); border-right: 1px solid var(--line); padding: var(--space-4) var(--space-3); }
+.main    { padding: var(--space-5) var(--space-6); display: grid; gap: var(--space-5); align-content: start; min-width: 0; }
 .title   { font-size: var(--size-3); font-weight: 500; }
 .subtitle{ font-size: var(--size-2); color: var(--text-2); }
 ```
 
-The top bar has, left to right: a 36 px icon square (`--inset` fill, `--line` edge, `--radius-sm`), the title with a one-line subtitle under it, then filters on the right.
+- The top bar runs the full width: product mark and name on the left, search in the middle or right, then the theme toggle and the user.
+- Use a left sidebar when there are 3 or more sections; otherwise put the sections as a segmented control in the top bar.
+- `.main` uses the full width. Lay regions out with grid columns (for example a list beside a detail pane, or a board of columns). Cap the width only of reading text and forms (about 720 px), not of the app.
+- Regions inside `.main` (tables, tiles, panes) are panels with `--radius-md`. The large radius `--radius-lg` is only for modals, drawers and popovers.
 
 ## Segmented control (filters, tabs)
 
@@ -116,6 +122,8 @@ There is one primary button per screen, and it sits at the end of the flow (bott
 Put labels above fields and group related fields in a two-column grid. A summary of what the user is signing up for (name, date, place) sits beside or above the form in an inset tile.
 
 ## Footer bar
+
+Use it at the bottom of a table or pane, not as a page footer.
 
 ```css
 .footer { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-4); color: var(--text-3); }
