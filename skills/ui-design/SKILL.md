@@ -1,7 +1,7 @@
 ---
 name: ui-design
 description: Designs mobile and web UI screens that look intentional instead of AI-generic. Use whenever you are asked to design, mock up, restyle or critique a screen, app, landing page or component.
-version: 0.1.0
+version: 0.2.0
 owner: "@Team1-Turkiye"
 tags: [ui, ux, design, workshop]
 ---
@@ -73,7 +73,9 @@ Follow the rules in **Principles** and avoid everything in **Anti-patterns**. Us
 
 ### 5. Self-critique
 
-Score the result against the **Verification** checklist. For every item that fails, write one line: what is wrong, where, and the concrete fix (e.g. "Register button: 3.1:1 contrast, darken accent to #B3261E").
+First look at the rendered result. If you can open a browser or take a screenshot, do it, and check every screen for text that overlaps, gets clipped, overflows its frame or runs into its label. If you cannot render it, say so in the report; do not claim visual checks you did not do.
+
+Then score the result against the **Verification** checklist. For every item that fails, write one line: what is wrong, where, and the concrete fix (e.g. "Register button: 3.1:1 contrast, darken accent to #B3261E").
 
 ### 6. Fix and report
 
@@ -151,6 +153,7 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 - [ ] Touch targets ≥ 44 × 44 px; buttons and inputs have visible states.
 - [ ] Form fields have visible labels and error messages.
 - [ ] No item from **Anti-patterns** is present.
+- [ ] The rendered screens were looked at: no overlapping, clipped or colliding text, nothing overflows its frame.
 - [ ] Content is realistic and in the product's language.
 - [ ] Every rule in **Team learnings** below is followed.
 
@@ -162,6 +165,7 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |
 | Accent color is everywhere. | Accent only on the primary action and the active state. |
+| Label and value run together (e.g. "DüzenleyenYazılım"). | Put the label above the value, or give the label column a fixed width and a 16px gap. |
 | Text hard to read on colored backgrounds. | Check the ratio; darken or lighten until it passes 4.5:1. |
 
 ## Team learnings
