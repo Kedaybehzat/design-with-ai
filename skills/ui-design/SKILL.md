@@ -1,31 +1,48 @@
 ---
 name: ui-design
-description: Designs mobile and web UI screens that look intentional instead of AI-generic. Use whenever you are asked to design, mock up, restyle or critique a screen, app, landing page or component.
-version: 0.2.0
+description: Designs web app screens in React that look intentional instead of AI-generic, using a calm, data-first base style with dark and light themes. Use whenever you are asked to design, build, restyle or critique a screen, web app, dashboard, landing page or component.
+version: 0.3.0
 owner: "@Team1-Turkiye"
-tags: [ui, ux, design, workshop]
+tags: [ui, ux, design, react, workshop]
 ---
 
 # UI Design
 
-You are designing for real people, not for a screenshot. Your default output is the statistical average of every interface you have seen, and the average looks generic. This skill replaces that default with decisions.
+You are designing for real people, not for a screenshot. Left alone, you produce the statistical average of every interface you have seen, and the average looks generic: purple gradients, emoji, big centered heroes. This skill replaces that default with a base style and with decisions.
 
-Follow the steps in order. Do not skip the brief, and do not skip the self-critique.
+Follow the steps in order. Do not skip the brief, and do not skip looking at the result.
 
 ## When to use
 
-- Designing a new screen, flow, landing page or component.
+- Designing or building a new screen, flow, web app, dashboard or component.
 - Restyling or improving an existing design.
-- Critiquing a design (run only steps 5 and 6).
+- Critiquing a design (run only steps 6 and 7).
 
 Do not use it for pure backend work or for copy that has no interface.
 
-## Prerequisites
+## Files
 
-- `DESIGN.md` at the repo root. It holds the team's decisions: persona, tone, palette, typefaces, spacing, references.
-- A brief that says what the screens are for (for the workshop: `brief/kampus-etkinlik.md`).
+| File | What it holds |
+| --- | --- |
+| `theme.css` | The base tokens for dark and light themes, already contrast-checked. Start from it. |
+| `patterns.md` | Recipes for the shell, filters, stat tiles, tables, expanded rows, chips, buttons, forms. |
+| `DESIGN.md` (repo root) | The team's decisions: persona, tone, theme, accent, and changes to the base. |
+| The brief | What the screens are for (for the workshop: `brief/kampus-etkinlik.md`). |
 
-If `DESIGN.md` is missing or still has `TODO` in it, stop and ask the user to fill in the missing decisions. Never invent a palette or a font pair on their behalf without saying so.
+If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TODO`, stop and ask the user to fill them in. Never invent a persona on their behalf. Visual fields left at their defaults mean "use the base style".
+
+## Base style
+
+The base style is calm and data-first. It looks like a precise instrument, not a poster. Hold on to these six ideas; they are what make it look designed.
+
+1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point. If you take the accent away, the screen still works.
+2. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows.
+3. **Quiet type, loud numbers.** One family (Geist). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
+4. **Rows, not cards.** Collections are dense tables or lists with hairline dividers and a whole-row click target. Cards are for summaries (stat tiles), not for every item.
+5. **Small, honest visuals.** Inline bar strips, meters with a target marker, a dashed threshold line, a hatched bar for a failed or timed-out value. No decorative illustration or stock imagery.
+6. **Pills and one primary.** Buttons, chips and segmented controls are pill-shaped. Every screen has one filled primary button; every other action is a ghost button.
+
+Both themes use the same token names. Dark: near-black panel, inset tiles darker than the panel. Light: white panel on a warm off-white canvas, inset tiles a shade darker than white. Never use pure `#000000`.
 
 ## Steps
 
@@ -39,45 +56,38 @@ Before writing any code, write three short lines:
 
 Expected result: three lines the user could disagree with. If they are vague, the design will be too.
 
-### 2. Turn DESIGN.md into tokens
+### 2. Set up the tokens
 
-Declare every decision as a CSS custom property before any component:
+Copy `theme.css` into the output's stylesheet, then apply `DESIGN.md`: the default theme, the accent (if the team changed it, recompute `--accent`, `--accent-text`, `--accent-tint` and `--accent-line` for **both** themes and check the ratios in the comments), and any other overrides.
 
-```css
-:root {
-  /* color: 60 / 30 / 10 */
-  --bg: ...;          /* 60%: page background */
-  --surface: ...;     /* 30%: cards, sections */
-  --accent: ...;      /* 10%: the one primary action, nothing else */
-  --text: ...;
-  --text-muted: ...;
-  /* type */
-  --font-display: ...;
-  --font-text: ...;
-  --size-1: ...; --size-2: ...; --size-3: ...; --size-4: ...; --size-5: ...;
-  /* space: 8pt grid */
-  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 32px; --space-6: 48px;
-  --radius: ...;
-}
-```
-
-After this step, no raw hex value, font name or pixel spacing appears outside `:root`.
+After this step, no raw hex value, font name or pixel size appears outside the token block.
 
 ### 3. Lay out the hierarchy before the decoration
 
-For each screen, decide the reading order (1st, 2nd, 3rd thing the eye hits) and build that with size, weight, position and space alone. Colors, images and shadows come after the structure works in grayscale.
+For each screen, decide the reading order (1st, 2nd, 3rd thing the eye hits) and build it with size, weight, position and space alone. Pick the patterns from `patterns.md` that fit the content. Add the accent last.
 
 ### 4. Build
 
-Follow the rules in **Principles** and avoid everything in **Anti-patterns**. Use realistic content in the product's language: real-sounding event names, dates, places and people. Never use lorem ipsum, "Event Title" or "John Doe".
+Build a React app (function components, `useState` for navigation and form state). Unless the user says otherwise:
 
-### 5. Self-critique
+- Output two files: `App.jsx` (default export `App`) and `styles.css`, imported by `App.jsx`.
+- No UI libraries, CSS frameworks or icon packages. Inline SVG icons only.
+- A theme toggle in the top bar switches `data-theme` between `dark` and `light`.
+- The layout is built for a 1440 × 900 laptop screen and still works at 1024 px wide.
 
-First look at the rendered result. If you can open a browser or take a screenshot, do it, and check every screen for text that overlaps, gets clipped, overflows its frame or runs into its label. If you cannot render it, say so in the report; do not claim visual checks you did not do.
+Follow **Principles**, avoid every **Anti-pattern**, and use realistic content in the product's language: real-sounding names, dates, places and numbers. Never use lorem ipsum, "Event Title" or "John Doe".
 
-Then score the result against the **Verification** checklist. For every item that fails, write one line: what is wrong, where, and the concrete fix (e.g. "Register button: 3.1:1 contrast, darken accent to #B3261E").
+### 5. Fill in the states
 
-### 6. Fix and report
+Each screen needs its hover, focus, selected, disabled, empty and error states. Forms need a success state. Without them it is a picture, not an interface.
+
+### 6. Look and self-critique
+
+Look at the rendered result in **both themes**. If you can run the app or take a screenshot, do it. Check every screen for text that overlaps, gets clipped, overflows its container or runs into its label. If you cannot render it, say so in the report; do not claim visual checks you did not do.
+
+Then score the result against **Verification**. For every item that fails, write one line: what is wrong, where, and the concrete fix (e.g. "Register button in light theme: 3.1:1, use `--btn` instead of the accent").
+
+### 7. Fix and report
 
 Apply the fixes. Then report to the user in this order:
 
@@ -95,36 +105,37 @@ Apply the fixes. Then report to the user in this order:
 
 ### Color
 
-- 60 / 30 / 10: background, surfaces, accent. The accent marks the primary action and almost nothing else.
-- Use at most one accent hue. A second hue needs a job (e.g. success state).
-- Tone your neutrals: off-white and near-black (e.g. `#FAF8F5`, `#1A1A1F`), not pure `#FFFFFF` and `#000000`.
+- 60 / 30 / 10: surfaces, neutral text and lines, accent. In the base style the accent is closer to 5%.
+- One accent hue. A second hue needs a job (for example `--danger` for errors).
 - Color is never the only signal: a status also has a word or an icon.
 
 ### Contrast
 
-- Body text: at least **4.5:1** against its background.
-- Large text (24px+, or 18.5px+ bold) and icons: at least **3:1**.
+- Body text: at least **4.5:1** against its background, in both themes.
+- Large text (24px+, or 18.5px+ bold), icons and input borders: at least **3:1**.
 - Placeholder and disabled text still need to be readable; muted is not invisible.
+- The ratios are written next to each token in `theme.css`. If you change a token, recompute.
 
 ### Typography
 
-- At most **two** typefaces: one for display, one for text. A monospace only if it has a job.
-- A type scale of 4 to 5 sizes, reused everywhere. Emphasize with weight, not with a new size.
-- Body text 16px or larger on mobile. Line height 1.4 to 1.6 for body, 1.1 to 1.25 for headings.
-- Line length 45 to 75 characters for reading text.
+- One family; a second only if `DESIGN.md` asks for it. A monospace only for code or IDs.
+- The five sizes in `theme.css`, reused everywhere. Emphasize with weight (400 / 500), not with a new size.
+- Line height 1.4 to 1.5 for text, 1.1 to 1.2 for the page title.
+- Tabular figures for every number that sits in a column or changes.
 
 ### Spacing and layout
 
-- Every spacing value comes from the 8pt scale.
-- Proximity: things that belong together sit closer together than things that do not. Space inside a group is smaller than space between groups.
-- Align to a small number of edges. Left-aligned text is the default; center only short, standalone lines.
-- Give content room. When in doubt, add space, not borders.
+- Every spacing value comes from the 4 px scale.
+- Proximity: space inside a group is smaller than space between groups.
+- Align to a small number of edges. Left-align text; right-align numbers.
+- Content width is capped (around 1200 px); do not stretch a table across a 2560 px screen.
 
 ### Interaction
 
-- Touch targets at least **44 × 44 px**.
-- Every interactive element has visible states: default, pressed/hover, disabled, focus.
-- Forms: visible labels above fields (not placeholder-only), clear error messages next to the field, the primary button at the end of the flow.
+- Click targets at least **32 px** high; the primary action **44 px**.
+- Every interactive element has visible hover, focus (`:focus-visible` ring), pressed and disabled states.
+- Forms: visible labels above fields, the error next to the field in words, the primary button at the end of the flow.
+- Motion is short (120 to 200 ms) and only explains a change. Respect `prefers-reduced-motion`.
 
 ## Anti-patterns
 
@@ -132,28 +143,30 @@ These are the signatures of an AI-generated interface. Do not use them unless `D
 
 - Purple-to-blue (or any rainbow) gradients on backgrounds, buttons or text.
 - Emoji used as icons.
-- Every section centered, every card the same size.
-- Cards inside cards inside cards.
-- Glassmorphism, glows and heavy drop shadows on everything.
 - A generic hero: big gradient headline, vague subtitle, two buttons.
-- Invented stats and testimonials ("10K+ happy users").
-- Five different font sizes on one card; three accent colors on one screen.
-- Inter / system font everywhere by default, with no decision behind it.
-- Decorative icons next to every label.
+- Every item in its own card; cards inside cards.
+- Glassmorphism, glows, drop shadows on everything.
+- Every section centered, every card the same size.
+- Avatar circles with initials used as decoration.
+- Invented vanity stats and testimonials ("10K+ happy users").
+- Bold on everything; three accent colors on one screen.
+- A different border radius on every component.
 
 ## Verification
 
 The design is done when every line is true. Write ✅ or ❌ next to each in your report.
 
 - [ ] Each screen has one clear most-important element and one primary action.
-- [ ] All colors, fonts and spacings come from the tokens in `:root`.
-- [ ] Body text contrast ≥ 4.5:1, large text and icons ≥ 3:1.
-- [ ] Two typefaces or fewer; type scale of five sizes or fewer.
-- [ ] Spacing follows the 8pt scale; related items are grouped by proximity.
-- [ ] Touch targets ≥ 44 × 44 px; buttons and inputs have visible states.
+- [ ] All colors, fonts and spacings come from tokens.
+- [ ] Body text ≥ 4.5:1, large text, icons and input borders ≥ 3:1, in **both** themes.
+- [ ] One type family (unless `DESIGN.md` says two); five sizes or fewer; numbers in tabular figures.
+- [ ] Spacing follows the 4 px scale; related items are grouped by proximity.
+- [ ] The accent appears only on live, selected or current things and the latest data point.
+- [ ] Click targets ≥ 32 px, the primary ≥ 44 px; hover, focus, disabled states are visible.
+- [ ] Empty, error and success states exist.
 - [ ] Form fields have visible labels and error messages.
+- [ ] The rendered screens were looked at in both themes: no overlapping, clipped or colliding text.
 - [ ] No item from **Anti-patterns** is present.
-- [ ] The rendered screens were looked at: no overlapping, clipped or colliding text, nothing overflows its frame.
 - [ ] Content is realistic and in the product's language.
 - [ ] Every rule in **Team learnings** below is followed.
 
@@ -161,12 +174,13 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 
 | Symptom | Fix |
 | --- | --- |
-| "Looks like every other AI app." | Re-read Anti-patterns; remove gradients and emoji first, then reduce the accent to the primary action only. |
+| "Looks like every other AI app." | Remove gradients, emoji and shadows first; then reduce the accent to one job. |
+| Looks flat and unfinished. | Add the layer step (panel → inset), hairlines, tabular numbers and one small visual per tile. |
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |
-| Accent color is everywhere. | Accent only on the primary action and the active state. |
-| Label and value run together (e.g. "DüzenleyenYazılım"). | Put the label above the value, or give the label column a fixed width and a 16px gap. |
-| Text hard to read on colored backgrounds. | Check the ratio; darken or lighten until it passes 4.5:1. |
+| Accent color is everywhere. | Accent only on the selected row, the latest data point and focus. The primary button uses `--btn`. |
+| Light theme looks washed out. | Muted text is `--text-2` / `--text-3`, never lighter; lines are `--line`, not lighter. |
+| Label and value run together (e.g. "DüzenleyenYazılım"). | Put the label above the value, or give the label column a fixed width and a 16 px gap. |
 
 ## Team learnings
 
@@ -176,9 +190,9 @@ Each rule you add is a rule the agent follows next time.
 Write it as: Rule / Why / Example. Turkish is fine.
 
 Example:
-- **Kural:** Etkinlik kartında tarih, başlıktan önce okunmalı.
+- **Kural:** Etkinlik listesinde tarih ilk sütun olsun.
   **Neden:** Öğrenci önce "ne zaman" diye bakıyor, sonra "ne".
-  **Örnek:** Tarih kartın sol üstünde, kalın ve accent renkte; başlık altında.
+  **Örnek:** `Per 3 Ara · 13:30` ilk sütunda, etkinlik adı ikinci sütunda.
 -->
 
 - _No team rules yet._

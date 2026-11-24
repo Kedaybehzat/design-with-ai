@@ -2,7 +2,7 @@
 
 **Team1 Türkiye × GDG on Campus Sakarya · UI/UX ve AI ile Tasarım Atölyesi · 26 Kasım 2026**
 
-Herkesin elinde AI var, herkes tasarımı AI ile yapmaya çalışıyor, ama çok azı iyi sonuç alıyor. Bu repo, aynı tasarımı önce **ham bir prompt** ile, sonra **kendi kararlarınız ve bir skill** ile ürettirip aradaki farkı görmeniz için hazırlandı. Sonunda öğrendiklerinizi skill'e işleyip yanınızda götürüyorsunuz.
+Bu atölyede bir **React web uygulaması** tasarlayacağız. Herkesin elinde AI var, herkes tasarımı AI ile yapmaya çalışıyor, ama çok azı iyi sonuç alıyor. Bu repo, aynı tasarımı önce **ham bir prompt** ile, sonra **kendi kararlarınız ve bir skill** ile ürettirip aradaki farkı görmeniz için hazırlandı. Sonunda öğrendiklerinizi skill'e işleyip yanınızda götürüyorsunuz.
 
 > **Ana fikir:** AI ortalamayı üretir. Zevki, kısıtı ve eleştiriyi sen verirsin.
 
@@ -14,8 +14,15 @@ Herkesin elinde AI var, herkes tasarımı AI ile yapmaya çalışıyor, ama çok
    git clone https://github.com/<kullanici-adiniz>/design-with-ai.git
    cd design-with-ai
    ```
+3. Bağımlılıkları kurup uygulamayı açın (Node.js 20+ gerekir):
+   ```bash
+   npm install
+   npm run dev
+   ```
+   Tarayıcıda `http://localhost:5173` açılır; her tur `?round=1`, `?round=2`, `?round=3` adresinde.
+
    Git kurulu değilse forkunuzun sayfasında klavyeden `.` tuşuna basın; tarayıcıda bir editör açılır (github.dev). Dosyaları oradan düzenleyip commit atabilirsiniz.
-3. Bir AI aracı seçin. Agent (Claude Code, Gemini CLI, Codex, Cursor, Antigravity) en iyisi; sohbet arayüzü (Gemini, Claude, ChatGPT) da olur.
+4. Bir AI aracı seçin. Agent (Claude Code, Gemini CLI, Codex, Cursor, Antigravity) en iyisi; sohbet arayüzü (Gemini, Claude, ChatGPT) da olur.
 
 ## Atölye akışı
 
@@ -33,12 +40,16 @@ Herkesin elinde AI var, herkes tasarımı AI ile yapmaya çalışıyor, ama çok
 
 ```text
 design-with-ai/
-├── skills/ui-design/SKILL.md   ← AI'ın okuyacağı tasarım talimatı. Tur 3'te siz geliştireceksiniz.
+├── skills/ui-design/
+│   ├── SKILL.md                ← AI'ın okuyacağı tasarım talimatı. Tur 3'te siz geliştireceksiniz.
+│   ├── theme.css               ← Koyu ve açık tema token'ları (kontrastı kontrol edilmiş)
+│   └── patterns.md             ← Bileşen tarifleri: tablo, filtre, kart, buton, form
 ├── DESIGN.md                   ← Ekibinizin kararları (persona, ton, renk, font)
 ├── brief/kampus-etkinlik.md    ← Ne tasarlıyoruz
-├── round-1/                    ← Ham prompt çıktısı
-├── round-2/                    ← Skill + DESIGN.md çıktısı
-├── round-3/                    ← Eleştiri sonrası çıktı
+├── round-1/App.jsx             ← Ham prompt çıktısı
+├── round-2/App.jsx             ← Skill + DESIGN.md çıktısı
+├── round-3/App.jsx             ← Eleştiri sonrası çıktı
+├── src/main.jsx                ← Turları açan iskelet (dokunmayın)
 ├── critique/CHECKLIST.md       ← Puanlama ve geri bildirim
 ├── RESULTS.md                  ← Grubunuzun özeti
 └── AGENTS.md                   ← Agent'lar için yönlendirme
@@ -53,6 +64,7 @@ Bir **skill**, AI agent'ının bir işi nasıl yapacağını anlatan bir Markdow
 | Bölüm | Ne işe yarar |
 | --- | --- |
 | **Steps** | AI'ın sırayla izleyeceği süreç: brief → token'lar → hiyerarşi → üretim → öz eleştiri → düzeltme |
+| **Base style** | Temel görsel dil: gri tonlar, tek vurgu, katmanlı yüzeyler, sessiz yazı ve belirgin rakamlar |
 | **Principles** | Hiyerarşi, renk, kontrast, tipografi, boşluk, etkileşim kuralları |
 | **Anti-patterns** | "AI yaptı" diye bağıran şeyler: gradient, emoji ikon, her şey ortalı… |
 | **Verification** | İş bitti demeden önce AI'ın geçmesi gereken kontrol listesi |

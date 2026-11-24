@@ -1,0 +1,139 @@
+/*
+ * Base theme for the ui-design skill.
+ * Two modes share one set of token names: set data-theme="dark" or "light" on <html>.
+ * Every text/background pair below is checked against WCAG 2.2:
+ *   body text >= 4.5:1, UI boundaries and graphics >= 3:1.
+ * Change values only through DESIGN.md decisions, and re-check contrast when you do.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* surfaces: canvas → panel → inset (inset is darker than panel in dark mode) */
+  --canvas: #141414;
+  --panel: #1b1b1b;
+  --inset: #101010;
+  --hover: #222222;
+
+  /* lines */
+  --line: #2a2a2a;          /* dividers, card edges (decorative) */
+  --line-strong: #3a3a3a;   /* ghost button edge, chip edge */
+  --field-line: #6e6e6e;    /* input borders: >= 3:1 on panel and inset */
+
+  /* text */
+  --text: #f2f2f2;          /* 15.4:1 on panel */
+  --text-2: #a6a6a6;        /* 7.1:1  labels, secondary values */
+  --text-3: #8f8f8f;        /* 5.3:1  meta, column headers, units */
+
+  /* the one accent: live, selected, current, primary data */
+  --accent: #2e90ff;        /* graphics only: bars, meters, focus ring (5.4:1) */
+  --accent-text: #7ab8ff;   /* accent used as text (8.3:1, 7.1:1 on tint) */
+  --accent-tint: #1d2936;   /* selected row / active chip fill */
+  --accent-line: #2c5d94;   /* selected row outline */
+
+  /* neutral chips and buttons */
+  --chip: #262626;
+  --chip-text: #bdbdbd;     /* 8.1:1 */
+  --btn: #ededed;           /* primary button fill */
+  --btn-text: #121212;      /* 16:1 */
+
+  /* states (only with a word or icon, never colour alone) */
+  --danger: #ff7a7a;        /* 6.8:1 */
+
+  /* track for meters and bars */
+  --track: #262626;
+  --bar: #5a5a5a;
+  --bar-soft: #3a3a3a;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --canvas: #f3f3f1;
+  --panel: #ffffff;
+  --inset: #f7f7f5;
+  --hover: #f0f0ed;
+
+  --line: #e4e4e1;
+  --line-strong: #cfcfcb;
+  --field-line: #8a8a87;    /* 3.5:1 on panel */
+
+  --text: #141414;          /* 18.4:1 on panel */
+  --text-2: #525252;        /* 7.8:1 */
+  --text-3: #666666;        /* 5.7:1 */
+
+  --accent: #1a6fe0;        /* 4.8:1 on panel */
+  --accent-text: #0b5bc4;   /* 6.4:1, 5.6:1 on tint */
+  --accent-tint: #eaf2fc;
+  --accent-line: #8db8ef;
+
+  --chip: #eeeeeb;
+  --chip-text: #454545;     /* 8.3:1 */
+  --btn: #141414;
+  --btn-text: #ffffff;
+
+  --danger: #c02626;        /* 5.9:1 */
+
+  --track: #ebebe8;
+  --bar: #9a9a96;
+  --bar-soft: #d6d6d2;
+}
+
+:root {
+  /* type: one family, numbers in tabular figures */
+  --font: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --size-1: 13px;   /* meta, column headers, units */
+  --size-2: 15px;   /* body, table cells, buttons */
+  --size-3: 17px;   /* panel titles */
+  --size-4: 22px;   /* key values */
+  --size-5: 32px;   /* page title, one per screen */
+
+  /* space: 4pt grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* shape */
+  --radius-lg: 24px;   /* outer panel */
+  --radius-md: 14px;   /* cards, tiles, table container */
+  --radius-sm: 8px;    /* inputs, small chips */
+  --radius-pill: 999px;
+
+  --row-h: 48px;       /* table rows and list items */
+  --control-h: 36px;   /* buttons, segmented control, inputs */
+  --control-h-lg: 44px;/* the primary action */
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--size-2);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* numbers line up in columns */
+.num, td, .value { font-variant-numeric: tabular-nums; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

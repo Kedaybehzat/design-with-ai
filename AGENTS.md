@@ -8,7 +8,7 @@ This repo is a UI design workshop. Participants compare a design made from a bar
 
 1. **Round 1 (`round-1/`) is intentionally context-free.** If the user is doing round 1, follow only their prompt. Do not read `DESIGN.md` or the skill.
 2. **For every other design task, read [`skills/ui-design/SKILL.md`](skills/ui-design/SKILL.md) first and follow its steps in order.** Use `DESIGN.md` for decisions and `brief/kampus-etkinlik.md` for content.
-3. **Never fill in `DESIGN.md` on the user's behalf.** The decisions are the team's. If a field still says `TODO`, ask.
+3. **Never fill in `DESIGN.md` on the user's behalf.** The decisions are the team's. If Persona or Ton still says `TODO`, ask.
 4. **Team learnings are rules.** Every rule under "Team learnings" at the end of `SKILL.md` overrides your defaults.
-5. Write each round's output to its own folder as a single `index.html` (`round-2/index.html`, `round-3/index.html`). Do not overwrite an earlier round.
+5. Each round is React code in its own folder: `round-N/App.jsx` (default export `App`) and, if needed, `round-N/styles.css`. `src/main.jsx` loads it at `http://localhost:5173/?round=N`; do not edit `src/main.jsx`. Do not overwrite an earlier round.
 6. When asked to add a learning to the skill, append it under "Team learnings" in the Rule / Why / Example format. Do not edit the rest of the skill unless asked.

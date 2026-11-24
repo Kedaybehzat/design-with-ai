@@ -6,10 +6,10 @@
 
 ```text
 skills/ui-design/SKILL.md'yi yeniden oku (Team learnings bölümü güncellendi).
-round-2/index.html'i şu geri bildirimlere göre düzelt ve round-3/index.html olarak yaz:
+round-2'deki tasarımı şu geri bildirimlere göre düzelt ve round-3/App.jsx ve round-3/styles.css olarak yaz:
 1. ...
 2. ...
 3. ...
 ```
 
-4. Ekran görüntüsünü `round-3/screenshot.png` olarak kaydedin ve commit atın: `git commit -am "Tur 3: eleştiri ve skill güncellemesi"`.
+4. Tarayıcıda `http://localhost:5173/?round=3` adresini açın, ekran görüntüsünü `round-3/screenshot.png` olarak kaydedin ve commit atın: `git add -A && git commit -m "Tur 3: eleştiri ve skill güncellemesi"`.

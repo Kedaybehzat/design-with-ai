@@ -8,11 +8,11 @@ AI'ın kendi raporuna güvenmeyin; ekranlara **siz** bakın.
 | --- | --- | --- | --- | --- |
 | 1 | **Hiyerarşi:** Her ekranda gözün ilk gittiği tek bir şey var. | | | |
 | 2 | **Ana aksiyon:** Her ekranda ne yapmam gerektiği 2 saniyede belli. | | | |
-| 3 | **Kontrast:** Metinler rahat okunuyor (4.5:1, [kontrol et](https://webaim.org/resources/contrastchecker/)). | | | |
-| 4 | **Renk:** 60/30/10 dengesi var; vurgu rengi sadece önemli yerde. | | | |
-| 5 | **Tipografi:** En fazla 2 font, tutarlı boyutlar. | | | |
+| 3 | **Kontrast:** Metinler **iki temada da** rahat okunuyor (4.5:1, [kontrol et](https://webaim.org/resources/contrastchecker/)). | | | |
+| 4 | **Renk:** Gri tonlar taşıyor; vurgu rengi sadece seçili / güncel olanda. | | | |
+| 5 | **Tipografi:** Tek aile, en fazla 5 boyut, rakamlar sütunda hizalı. | | | |
 | 6 | **Boşluk:** Ait olan şeyler yakın, gruplar arası nefes alıyor. | | | |
-| 7 | **Dokunma:** Butonlar ve alanlar parmakla rahat basılır (≥ 44px). | | | |
+| 7 | **Tıklama ve durumlar:** Butonlar rahat tıklanır (ana buton ≥ 44px); hover, odak ve boş/hata durumları var. | | | |
 | 8 | **Form:** Alanların görünür etiketi var, hata durumu düşünülmüş. | | | |
 | 9 | **Özgünlük:** "AI yaptı" belli değil (gradient, emoji ikon, her şey ortalı vb. yok). | | | |
 | 10 | **Persona:** Bu tasarım DESIGN.md'deki kişiye gerçekten uygun. | | | |
@@ -24,9 +24,9 @@ Tur 2'de en düşük puan alan 3 madde için AI'a **somut** geri bildirim verin.
 
 | ❌ Belirsiz | ✅ Hedefli |
 | --- | --- |
-| "Daha güzel yap." | "Liste ekranında tarih kaybolmuş; kartın sol üstüne, 20px kalın ve vurgu renginde koy." |
-| "Daha modern olsun." | "Kartlardaki gölgeleri kaldır, aralarındaki boşluğu 16px'ten 24px'e çıkar." |
-| "Buton kötü." | "Kayıt butonu 36px yüksekliğinde; 52px yap, tam genişlik olsun, ekranın altına sabitle." |
+| "Daha güzel yap." | "Listede tarih kaybolmuş; tarihi ilk sütuna al, değeri 15px medium, gün adını soluk yaz." |
+| "Daha modern olsun." | "Gölgeleri kaldır; derinliği panel → inset katmanı ve 1px çizgiyle ver." |
+| "Buton kötü." | "Kayıt butonu açık temada vurgu renginde ve 3.1:1; --btn rengine al, 44px yap, formun sağ altına koy." |
 
 Yazdığınız geri bildirimler:
 

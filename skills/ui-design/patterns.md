@@ -1,0 +1,138 @@
+# Patterns
+
+Component recipes for the base style. Every value comes from `theme.css`. Copy the structure, then adapt the content to the brief. Do not copy these comments into the product.
+
+## App shell
+
+One outer panel holds the screen. It sits on the canvas with room around it, and its corners are the largest radius in the product.
+
+```css
+.shell   { max-width: 1200px; margin: var(--space-7) auto; padding: var(--space-5);
+           background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); }
+.topbar  { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+           margin-bottom: var(--space-5); }
+.title   { font-size: var(--size-3); font-weight: 500; }
+.subtitle{ font-size: var(--size-2); color: var(--text-2); }
+```
+
+The top bar has, left to right: a 36 px icon square (`--inset` fill, `--line` edge, `--radius-sm`), the title with a one-line subtitle under it, then filters on the right.
+
+## Segmented control (filters, tabs)
+
+A pill track with pill options. The active option gets a raised fill. Each option can carry a count in `--text-3`.
+
+```css
+.seg        { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line);
+              border-radius: var(--radius-pill); background: var(--inset); }
+.seg button { height: 32px; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-pill);
+              background: transparent; color: var(--text-2); font: inherit; cursor: pointer; }
+.seg button[aria-pressed='true'] { background: var(--chip); color: var(--text); }
+.seg .count { margin-left: 6px; color: var(--text-3); }
+```
+
+## Stat tiles
+
+Three or four tiles in a row. Each has a label, a value with a smaller muted unit, and one small visual: a bar strip, or a meter with a marker. A tile never holds more than one number.
+
+```css
+.tiles  { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+.tile   { background: var(--inset); border: 1px solid var(--line); border-radius: var(--radius-md);
+          padding: var(--space-4); display: grid; gap: var(--space-2); }
+.label  { color: var(--text-2); }
+.value  { font-size: var(--size-4); font-weight: 500; letter-spacing: -0.01em; }
+.unit   { font-size: var(--size-2); color: var(--text-3); margin-left: 4px; font-weight: 400; }
+```
+
+- **Bar strip:** 20 to 30 thin bars (3 px wide, 2 px gap) in `--bar` and `--bar-soft`. The latest bar is `--accent`. This is the only accent in the tile.
+- **Meter:** a 4 px track (`--track`) with a fill (`--text-2`) and a 1 px vertical marker for the limit or target.
+
+## Data table
+
+The main content of a list screen. Rows are flat, separated by hairlines, and the whole row is the click target.
+
+```css
+.table-wrap { background: var(--inset); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--space-2); }
+.thead, .row { display: grid; grid-template-columns: var(--cols); align-items: center; gap: var(--space-4);
+               padding: 0 var(--space-3); }
+.thead { height: 40px; color: var(--text-3); font-size: var(--size-1); }
+.row   { min-height: var(--row-h); border-top: 1px solid var(--line); border-radius: var(--radius-sm);
+         cursor: pointer; transition: background 120ms var(--ease); }
+.row:hover { background: var(--hover); }
+.cell-num { text-align: right; font-variant-numeric: tabular-nums; }
+```
+
+- Column headers are `--text-3`, never bold. Numeric columns are right-aligned, and their header is right-aligned too.
+- Lead each row with a 20 px status circle (`--chip` fill, 12 px icon in `--text-2`).
+- Secondary or replaced values use `--text-3`. A replaced value can be struck through and followed by an arrow and the new value.
+- A dashed 1 px vertical line in `--line-strong` marks a threshold across all rows (for example capacity or a deadline).
+
+## Selected / expanded row
+
+Selecting a row opens its detail in place instead of on a new page, when the detail is short.
+
+```css
+.row[aria-expanded='true'] { background: var(--accent-tint); border: 1px solid var(--accent-line); border-radius: var(--radius-md); }
+.row-detail { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-3) var(--space-4) 44px; }
+```
+
+The detail holds numbered sub-rows (step number in `--text-3`, name, status chip, bar) and a row of ghost pill buttons with the actions. A short meta note sits on the right in `--text-3`.
+
+## Chips
+
+```css
+.chip        { display: inline-flex; align-items: center; height: 26px; padding: 0 10px;
+               border-radius: var(--radius-pill); background: var(--chip); color: var(--chip-text); font-size: var(--size-1); }
+.chip.accent { background: var(--accent-tint); color: var(--accent-text); }
+```
+
+A chip always says what it means in words ("Dolu", "12 yer kaldı", "Onaylandı"). Use the accent chip for the positive or current state only. Use the neutral chip for everything else.
+
+## Buttons
+
+```css
+.btn         { height: var(--control-h); padding: 0 var(--space-4); border-radius: var(--radius-pill);
+               font: inherit; font-weight: 500; cursor: pointer; transition: background 120ms var(--ease); }
+.btn.ghost   { background: transparent; color: var(--text); border: 1px solid var(--line-strong); }
+.btn.ghost:hover { background: var(--hover); }
+.btn.primary { background: var(--btn); color: var(--btn-text); border: 0; height: var(--control-h-lg); padding: 0 var(--space-5); }
+.btn.primary:hover { opacity: 0.88; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+```
+
+There is one primary button per screen, and it sits at the end of the flow (bottom right of the panel or form). Every other action is ghost.
+
+## Form
+
+```css
+.field  { display: grid; gap: 6px; }
+.field label { color: var(--text-2); }
+.input  { height: var(--control-h-lg); padding: 0 var(--space-3); border-radius: var(--radius-sm);
+          border: 1px solid var(--field-line); background: var(--inset); color: var(--text); font: inherit; }
+.input::placeholder { color: var(--text-3); }
+.input[aria-invalid='true'] { border-color: var(--danger); }
+.error  { color: var(--danger); font-size: var(--size-1); }
+```
+
+Put labels above fields and group related fields in a two-column grid. A summary of what the user is signing up for (name, date, place) sits beside or above the form in an inset tile.
+
+## Footer bar
+
+```css
+.footer { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-4); color: var(--text-3); }
+```
+
+On the left, one line of context in `--text-3` ("12 / 48 etkinlik gösteriliyor"). On the right, a ghost button and the primary button.
+
+## Icons
+
+Draw them as inline SVG: 16 px, 1.5 px stroke, `currentColor`, round caps. Use only the few icons that carry meaning: back, check, close, arrow, calendar, pin. Never use emoji.
+
+## Theme toggle
+
+```jsx
+// start from ?theme=… if the page set it, otherwise the DESIGN.md default
+const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark');
+useEffect(() => { document.documentElement.dataset.theme = theme; }, [theme]);
+```
+
+Show it as a small ghost icon button in the top bar. Both themes must pass the same contrast checks.
