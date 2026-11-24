@@ -76,11 +76,14 @@ The main content of a list screen. Rows are flat, separated by hairlines, and th
 
 ## Selected / expanded row
 
-Selecting a row opens its detail in place instead of on a new page, when the detail is short.
+Selecting a row opens its detail in place instead of on a new page, when the detail is short. The selection stays **neutral**: a one-step surface change and a thin accent mark on the leading edge. The accent never fills the row or outlines it.
 
 ```css
-.row[aria-expanded='true'] { background: var(--accent-tint); border: 1px solid var(--accent-line); border-radius: var(--radius-md); }
-.row-detail { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-3) var(--space-4) 44px; }
+.row[aria-selected='true'] { background: var(--hover); position: relative; }
+.row[aria-selected='true']::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px;
+                                      border-radius: 2px; background: var(--accent); }
+.row-detail { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-3) var(--space-4) 44px;
+              background: var(--inset); border-top: 1px solid var(--line); }
 ```
 
 The detail holds numbered sub-rows (step number in `--text-3`, name, status chip, bar) and a row of ghost pill buttons with the actions. A short meta note sits on the right in `--text-3`.
@@ -137,12 +140,34 @@ On the left, one line of context in `--text-3` ("12 / 48 etkinlik gösteriliyor"
 
 Draw them as inline SVG: 16 px, 1.5 px stroke, `currentColor`, round caps. Use only the few icons that carry meaning: back, check, close, arrow, calendar, pin. Never use emoji.
 
-## Theme toggle
+## Dials and theme toggle
+
+Set the dials once, on `<html>`, when the app mounts. Only the theme changes at runtime.
 
 ```jsx
+const DIALS = { neutral: 'warm', accent: 'amber', shape: 'sharp', density: 'compact' }; // from step 2
+useEffect(() => { Object.assign(document.documentElement.dataset, DIALS); }, []);
+
 // start from ?theme=… if the page set it, otherwise the DESIGN.md default
 const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark');
 useEffect(() => { document.documentElement.dataset.theme = theme; }, [theme]);
 ```
 
-Show it as a small ghost icon button in the top bar. Both themes must pass the same contrast checks.
+Show the toggle as a small ghost icon button in the top bar. Both themes must pass the same contrast checks.
+
+## Layouts
+
+Pick the layout from the main job of the screen, not from habit. Two different products should not end up with the same layout.
+
+| Main job | Layout |
+| --- | --- |
+| Scan many items, act on one | **Table + detail pane:** table fills the main area, detail opens in a right pane (360 to 420 px). |
+| Move items through stages | **Board:** one column per stage, compact item rows inside, counts in column headers. |
+| Read or edit one item at a time | **List / detail split:** narrow list on the left (300 to 360 px), the item fills the rest. |
+| Things happen at times | **Timeline or calendar:** time runs left to right or top to bottom; items sit on it. |
+| Fill in something once | **Focused form:** a single column (max 720 px) with a summary beside it. |
+| Watch numbers over time | **Overview:** a row of stat tiles, then one large chart or table. |
+
+Whatever the layout, its regions share the full width of `.main`: board columns use `grid-template-columns: repeat(N, minmax(280px, 1fr))`, panes use `1fr 400px`. Never leave the right half of the window empty.
+
+Stat tiles are optional. Use them only when the numbers change what the user does next.

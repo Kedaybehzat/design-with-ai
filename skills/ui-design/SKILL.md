@@ -1,7 +1,7 @@
 ---
 name: ui-design
 description: Designs web app screens in React that look intentional instead of AI-generic, using a calm, data-first base style with dark and light themes. Use whenever you are asked to design, build, restyle or critique a screen, web app, dashboard, landing page or component.
-version: 0.3.2
+version: 0.4.0
 owner: "@Team1-Turkiye"
 tags: [ui, ux, design, react, workshop]
 ---
@@ -24,24 +24,26 @@ Do not use it for pure backend work or for copy that has no interface.
 
 | File | What it holds |
 | --- | --- |
-| `theme.css` | The base tokens for dark and light themes, already contrast-checked. Start from it. |
-| `patterns.md` | Recipes for the shell, filters, stat tiles, tables, expanded rows, chips, buttons, forms. |
+| `theme.css` | The tokens and five dials (theme, neutral, accent, shape, density) for dark and light, every combination contrast-checked. Start from it. |
+| `patterns.md` | Recipes for the shell, layouts, filters, stat tiles, tables, selected rows, chips, buttons, forms. |
 | `DESIGN.md` (repo root) | The team's decisions: persona, tone, theme, accent, and changes to the base. |
 | The brief | What the screens are for (for the workshop: `brief/kampus-etkinlik.md`). |
 
-If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TODO`, stop and ask the user to fill them in. Never invent a persona on their behalf. Visual fields left at their defaults mean "use the base style".
+If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TODO`, stop and ask the user to fill them in. Never invent a persona on their behalf. Visual fields left open (`AI seçsin`) are yours to decide in step 2, with a reason.
 
 ## Base style
 
 The base style is calm and data-first. It looks like a precise instrument, not a poster. Hold on to these seven ideas; they are what make it look designed.
 
-1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point. If you take the accent away, the screen still works.
+1. **Monochrome first.** Grays carry almost everything. There is one accent hue, and it only marks what is live, selected, current or the latest data point, in small marks: a bar, a dot, a 2 px edge, a chip, a focus ring. The accent never fills a row, a panel or a card. If you take the accent away, the screen still works.
 2. **A full-screen product, not a card.** The app fills the browser window: a full-width top bar, an optional sidebar, and a main area that uses the width. Never put the whole app in one centered, rounded card on an empty background; that reads as a screenshot, not a platform.
 3. **Layered surfaces, not shadows.** Canvas → panel → inset. Depth comes from a one-step change in surface and a 1 px hairline, never from drop shadows or glows. Every line is solid and the same color along its whole length: it never fades, tapers or glows. Backgrounds are flat colors with no texture.
-4. **Quiet type, loud numbers.** One family (Geist). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
+4. **Quiet type, loud numbers.** One family (from the list in step 2). Labels are regular weight and muted. Values are medium weight, larger, in tabular figures, with the unit smaller and muted beside them (`1.82` `s`). Nothing is bold except what must be read first.
 5. **Rows, not cards.** Collections are dense tables or lists with hairline dividers and a whole-row click target. Cards are for summaries (stat tiles), not for every item.
 6. **Small, honest visuals.** Inline bar strips, meters with a target marker, a dashed threshold line, a hatched bar for a failed or timed-out value. No decorative illustration or stock imagery.
 7. **Pills and one primary.** Buttons, chips and segmented controls are pill-shaped. Every screen has one filled primary button; every other action is a ghost button.
+
+**The base style is a grammar, not a template.** Two products built with this skill should feel related, not identical: the dials, the font and the layout change from product to product (step 2).
 
 Both themes use the same token names. Dark: near-black canvas and bars, inset tiles darker than the panel. Light: white bars and panels on a warm off-white canvas, inset tiles a shade darker than white. Never use pure `#000000`.
 
@@ -57,15 +59,26 @@ Before writing any code, write three short lines:
 
 Expected result: three lines the user could disagree with. If they are vague, the design will be too.
 
-### 2. Set up the tokens
+### 2. Set the dials
 
-Copy `theme.css` into the output's stylesheet, then apply `DESIGN.md`: the default theme, the accent (if the team changed it, recompute `--accent`, `--accent-text`, `--accent-tint` and `--accent-line` for **both** themes and check the ratios in the comments), and any other overrides.
+Choose one value for each dial and write it down with a one-line reason drawn from the persona, the tone or the domain:
 
-After this step, no raw hex value, font name or pixel size appears outside the token block.
+| Dial | Options | Ask yourself |
+| --- | --- | --- |
+| Neutral | `neutral` · `warm` · `cool` | Hospitality, food, people → often warm. Finance, dev tools, health → often cool. |
+| Accent | `blue` · `green` · `amber` · `coral` · `teal` · `mono` | What does "live / done / now" mean in this domain? Avoid a hue that clashes with `--danger` if errors are frequent. |
+| Shape | `sharp` · `soft` · `round` | Precise and professional → sharp. Friendly, consumer → round. |
+| Density | `compact` · `comfortable` | How many items does the user scan at once? Under time pressure, at arm's length → comfortable. |
+| Font | Geist · IBM Plex Sans · Manrope · Instrument Sans · Figtree · Schibsted Grotesk | Match the tone words in `DESIGN.md`. |
+| Layout | see **Layouts** in `patterns.md` | What is the one main job of the screen? |
+
+`DESIGN.md` wins: if the team set a dial, use it. If a dial is left open, decide it yourself; do not fall back to the same combination every time. Never pick a value outside these lists without recomputing the contrast ratios.
+
+Then copy `theme.css` into the output's stylesheet, change the font `@import` and `--font`, and set the dials as `data-*` attributes on `<html>` (see **Dials and theme toggle** in `patterns.md`). After this step, no raw hex value, font name or pixel size appears outside the token block.
 
 ### 3. Lay out the hierarchy before the decoration
 
-For each screen, decide the reading order (1st, 2nd, 3rd thing the eye hits) and build it with size, weight, position and space alone. Pick the patterns from `patterns.md` that fit the content. Add the accent last.
+For each screen, decide the reading order (1st, 2nd, 3rd thing the eye hits) and build it with size, weight, position and space alone. Use the layout you chose in step 2 and the patterns from `patterns.md` that fit the content. Add the accent last.
 
 ### 4. Build
 
@@ -93,7 +106,7 @@ Then score the result against **Verification**. For every item that fails, write
 Apply the fixes. Then report to the user in this order:
 
 1. The three brief lines from step 1.
-2. The decisions you made that were not in `DESIGN.md`.
+2. The dials, font and layout you chose, each with its reason, and any other decisions that were not in `DESIGN.md`.
 3. The checklist result, before and after.
 
 ## Principles
@@ -106,7 +119,7 @@ Apply the fixes. Then report to the user in this order:
 
 ### Color
 
-- 60 / 30 / 10: surfaces, neutral text and lines, accent. In the base style the accent is closer to 5%.
+- 60 / 30 / 10: surfaces, neutral text and lines, accent. In the base style the accent is closer to 5%, and it is never a large fill: a selected row or panel changes surface (`--hover`), not color.
 - One accent hue. A second hue needs a job (for example `--danger` for errors).
 - Color is never the only signal: a status also has a word or an icon.
 
@@ -119,7 +132,7 @@ Apply the fixes. Then report to the user in this order:
 
 ### Typography
 
-- One family; a second only if `DESIGN.md` asks for it. A monospace only for code or IDs.
+- One family from the font list; a second only if `DESIGN.md` asks for it. A monospace only for code or IDs.
 - The five sizes in `theme.css`, reused everywhere. Emphasize with weight (400 / 500), not with a new size.
 - Line height 1.4 to 1.5 for text, 1.1 to 1.2 for the page title.
 - Tabular figures for every number that sits in a column or changes.
@@ -166,7 +179,8 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 - [ ] Body text ≥ 4.5:1, large text, icons and input borders ≥ 3:1, in **both** themes.
 - [ ] One type family (unless `DESIGN.md` says two); five sizes or fewer; numbers in tabular figures.
 - [ ] Spacing follows the 4 px scale; related items are grouped by proximity.
-- [ ] The accent appears only on live, selected or current things and the latest data point.
+- [ ] The accent appears only as small marks (bar, dot, 2 px edge, chip, focus ring) on live, selected or current things; it fills no row, panel or card.
+- [ ] The dials, font and layout are stated with a reason in the report.
 - [ ] Click targets ≥ 32 px, the primary ≥ 44 px; hover, focus, disabled states are visible.
 - [ ] Empty, error and success states exist.
 - [ ] Form fields have visible labels and error messages.
@@ -186,7 +200,9 @@ The design is done when every line is true. Write ✅ or ❌ next to each in you
 | Looks flat and unfinished. | Add the layer step (panel → inset), hairlines, tabular numbers and one small visual per tile. |
 | Everything feels equally important. | Pick the one element per screen; shrink and mute the rest. |
 | Crowded, hard to scan. | Increase the space between groups, not inside them. |
-| Accent color is everywhere. | Accent only on the selected row, the latest data point and focus. The primary button uses `--btn`. |
+| Accent color is everywhere. | Accent only as small marks: a 2 px edge on the selected row, the latest data point, focus. Selected rows use `--hover`. The primary button uses `--btn`. |
+| A big blue (or any accent) block on the selected row. | Replace the tint and outline with `--hover` and a 2 px accent edge; put the expanded detail on `--inset`. |
+| "Looks the same as last time." | Revisit step 2: change the dials and the layout to fit this product's persona and job. |
 | Light theme looks washed out. | Muted text is `--text-2` / `--text-3`, never lighter; lines are `--line`, not lighter. |
 | Label and value run together (e.g. "DüzenleyenYazılım"). | Put the label above the value, or give the label column a fixed width and a 16 px gap. |
 

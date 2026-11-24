@@ -1,6 +1,6 @@
 # Tur 2: Skill + DESIGN.md ile
 
-Önce [DESIGN.md](../DESIGN.md)'de **Persona** ve **Ton** bölümlerini doldurun, tema ve vurgu rengini seçin. Bu adımı AI'a yaptırmayın; kararlar sizin.
+Önce [DESIGN.md](../DESIGN.md)'de **Persona** ve **Ton** bölümlerini doldurun, **Stil ayarları**'nı seçin (ya da `AI seçsin` bırakın). Bu adımı AI'a yaptırmayın; kararlar sizin.
 
 ## Agent kullanıyorsanız (Claude Code, Gemini CLI, Codex, Cursor, Antigravity…)
 

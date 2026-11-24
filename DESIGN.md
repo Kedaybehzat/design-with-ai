@@ -1,7 +1,7 @@
 # DESIGN.md
 
 > Bu dosya ekibinizin tasarım kararlarıdır. AI bu kararları okuyup uygular.
-> **Tur 2'den önce** her `TODO`'yu doldurun. Görsel alanlarda bir varsayılan var: dokunmazsanız skill'in temel stili kullanılır, değiştirirseniz sizin kararınız geçerli olur.
+> **Tur 2'den önce** Persona ve Ton'u mutlaka doldurun. Stil ayarlarında bir seçenek seçin ya da `AI seçsin` bırakın; o zaman AI personaya göre seçip nedenini söyler.
 
 **Grup:** TODO: grup adı ve üyeler
 
@@ -22,34 +22,29 @@ TODO (örn. net, sakin, güvenilir)
 
 Ve **olmaması gereken** 1 kelime: TODO (örn. çocuksu)
 
-## 3. Tema
+## 3. Stil ayarları
 
-- **Açılış teması:** TODO: `koyu` veya `açık` (ikisi de yapılacak; burada hangisiyle açılacağını seçin)
+Her satırda bir seçenek yazın ya da `AI seçsin` bırakın. Bütün kombinasyonların kontrastı önceden ölçüldü; listedeki her seçenek güvenli.
 
-## 4. Renk
+| Ayar | Seçenekler | Seçiminiz |
+| --- | --- | --- |
+| Açılış teması | `koyu` · `açık` (ikisi de yapılır) | TODO |
+| Nötr ton | `neutral` · `warm` (sıcak) · `cool` (soğuk) | AI seçsin |
+| Vurgu rengi | `blue` · `green` · `amber` · `coral` · `teal` · `mono` | AI seçsin |
+| Köşe şekli | `sharp` (keskin) · `soft` (yumuşak) · `round` (yuvarlak) | AI seçsin |
+| Yoğunluk | `compact` (sıkı) · `comfortable` (rahat) | AI seçsin |
+| Font | Geist · IBM Plex Sans · Manrope · Instrument Sans · Figtree · Schibsted Grotesk | AI seçsin |
 
-Temel stil neredeyse tamamen gri tonlardan oluşur ve **tek bir vurgu rengi** kullanır. Vurgu sadece seçili, canlı ve güncel olanı işaretler.
+Vurgu rengi küçük işaretlerde kullanılır (seçili satırın kenarı, canlı nokta, son veri). Hiçbir zaman bir satırı ya da paneli boyamaz. Gölge yok; derinlik katman ve ince çizgiyle verilir.
 
-- **Vurgu rengi:** `#2E90FF` (varsayılan mavi). Değiştirmek isterseniz yazın: ____
-- Değiştirirseniz, koyu ve açık temada kontrastı kontrol edin: https://webaim.org/resources/contrastchecker/
-  Metin için en az 4.5:1, grafik ve kenarlık için en az 3:1.
+Listede olmayan bir renk isterseniz hex kodunu yazın ve iki temada kontrastını kontrol edin: https://webaim.org/resources/contrastchecker/ (metin en az 4.5:1, grafik ve kenarlık en az 3:1).
 
-## 5. Tipografi
-
-- **Font:** `Geist` (varsayılan, tek aile). Değiştirmek isterseniz yazın: ____
-- **Neden:** Sakin, okunaklı ve rakamları sütunda hizalı (tabular) gösterir.
-
-## 6. Şekil
-
-- **Köşe yuvarlaklığı:** varsayılan (dış panel 24px, kartlar 14px, butonlar pill). Değiştirmek isterseniz: ____
-- **Gölge:** yok. Derinlik katman ve ince çizgiyle verilir.
-
-## 7. Referans
+## 4. Referans
 
 Beğendiğiniz 1–2 uygulama veya site ve **neyini** beğendiğiniz:
 
 - TODO (örn. Luma: etkinlik listesinde tarihin önde olması)
 
-## 8. Kesinlikle olmasın
+## 5. Kesinlikle olmasın
 
 - TODO (örn. mor gradient, emoji ikon)

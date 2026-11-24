@@ -1,98 +1,35 @@
 /*
  * Base theme for the ui-design skill.
- * Two modes share one set of token names: set data-theme="dark" or "light" on <html>.
- * Every text/background pair below is checked against WCAG 2.2:
- *   body text >= 4.5:1, UI boundaries and graphics >= 3:1.
- * Change values only through DESIGN.md decisions, and re-check contrast when you do.
+ *
+ * The look is set by five dials, as attributes on <html>:
+ *   data-theme   = dark | light                       (both must work)
+ *   data-neutral = neutral | warm | cool              (gray temperature)
+ *   data-accent  = blue | green | amber | coral | teal | mono
+ *   data-shape   = sharp | soft | round               (corner radius)
+ *   data-density = compact | comfortable             (row and control height)
+ * plus one font from the list below (change the @import and --font).
+ *
+ * Every combination of theme × neutral × accent is contrast-checked (WCAG 2.2):
+ *   text on any surface >= 4.8:1, accent text >= 5.3:1 (also on the tint),
+ *   input borders and accent graphics >= 3:1.
+ * If you invent a new value, recompute the ratios before using it.
+ *
+ * Fonts (all have full Turkish glyphs; pick one per product):
+ *   Geist · IBM Plex Sans · Manrope · Instrument Sans · Figtree · Schibsted Grotesk
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
-
-:root,
-[data-theme='dark'] {
-  color-scheme: dark;
-
-  /* surfaces: canvas → panel → inset (inset is darker than panel in dark mode) */
-  --canvas: #141414;
-  --panel: #1b1b1b;
-  --inset: #101010;
-  --hover: #222222;
-
-  /* lines */
-  --line: #2a2a2a;          /* dividers, card edges (decorative) */
-  --line-strong: #3a3a3a;   /* ghost button edge, chip edge */
-  --field-line: #6e6e6e;    /* input borders: >= 3:1 on panel and inset */
-
-  /* text */
-  --text: #f2f2f2;          /* 15.4:1 on panel */
-  --text-2: #a6a6a6;        /* 7.1:1  labels, secondary values */
-  --text-3: #8f8f8f;        /* 5.3:1  meta, column headers, units */
-
-  /* the one accent: live, selected, current, primary data */
-  --accent: #2e90ff;        /* graphics only: bars, meters, focus ring (5.4:1) */
-  --accent-text: #7ab8ff;   /* accent used as text (8.3:1, 7.1:1 on tint) */
-  --accent-tint: #1d2936;   /* selected row / active chip fill */
-  --accent-line: #2c5d94;   /* selected row outline */
-
-  /* neutral chips and buttons */
-  --chip: #262626;
-  --chip-text: #bdbdbd;     /* 8.1:1 */
-  --btn: #ededed;           /* primary button fill */
-  --btn-text: #121212;      /* 16:1 */
-
-  /* states (only with a word or icon, never colour alone) */
-  --danger: #ff7a7a;        /* 6.8:1 */
-
-  /* track for meters and bars */
-  --track: #262626;
-  --bar: #5a5a5a;
-  --bar-soft: #3a3a3a;
-}
-
-[data-theme='light'] {
-  color-scheme: light;
-
-  --canvas: #f3f3f1;
-  --panel: #ffffff;
-  --inset: #f7f7f5;
-  --hover: #f0f0ed;
-
-  --line: #e4e4e1;
-  --line-strong: #cfcfcb;
-  --field-line: #8a8a87;    /* 3.5:1 on panel */
-
-  --text: #141414;          /* 18.4:1 on panel */
-  --text-2: #525252;        /* 7.8:1 */
-  --text-3: #666666;        /* 5.7:1 */
-
-  --accent: #1a6fe0;        /* 4.8:1 on panel */
-  --accent-text: #0b5bc4;   /* 6.4:1, 5.6:1 on tint */
-  --accent-tint: #eaf2fc;
-  --accent-line: #8db8ef;
-
-  --chip: #eeeeeb;
-  --chip-text: #454545;     /* 8.3:1 */
-  --btn: #141414;
-  --btn-text: #ffffff;
-
-  --danger: #c02626;        /* 5.9:1 */
-
-  --track: #ebebe8;
-  --bar: #9a9a96;
-  --bar-soft: #d6d6d2;
-}
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap');
 
 :root {
-  /* type: one family, numbers in tabular figures */
   --font: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
   --size-1: 13px;   /* meta, column headers, units */
   --size-2: 15px;   /* body, table cells, buttons */
   --size-3: 17px;   /* panel titles */
   --size-4: 26px;   /* key values */
   --size-5: 32px;   /* page title, one per screen */
 
-  /* space: 4pt grid */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -101,19 +38,237 @@
   --space-6: 32px;
   --space-7: 48px;
 
-  /* shape */
-  --radius-lg: 24px;   /* outer panel */
-  --radius-md: 14px;   /* cards, tiles, table container */
-  --radius-sm: 8px;    /* inputs, small chips */
-  --radius-pill: 999px;
-
-  --row-h: 48px;       /* table rows and list items */
-  --control-h: 36px;   /* buttons, segmented control, inputs */
-  --control-h-lg: 44px;/* the primary action */
-
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* ---------- shape ---------- */
+:root, [data-shape='soft']  { --radius-lg: 20px; --radius-md: 12px; --radius-sm: 8px; --radius-pill: 999px; }
+[data-shape='sharp']        { --radius-lg: 10px; --radius-md: 6px;  --radius-sm: 4px; --radius-pill: 6px; }
+[data-shape='round']        { --radius-lg: 28px; --radius-md: 18px; --radius-sm: 12px; --radius-pill: 999px; }
+
+/* ---------- density ---------- */
+:root, [data-density='compact'] { --row-h: 44px; --control-h: 32px; --control-h-lg: 44px; --pad: var(--space-4); }
+[data-density='comfortable']    { --row-h: 56px; --control-h: 40px; --control-h-lg: 48px; --pad: var(--space-5); }
+
+/* ---------- neutral palettes (theme × neutral) ---------- */
+:root, [data-theme='dark'][data-neutral='neutral'], [data-theme='dark']:not([data-neutral]), :root:not([data-theme]):not([data-neutral]) {
+  color-scheme: dark;
+  --canvas: #141414;
+  --panel: #1b1b1b;
+  --inset: #101010;
+  --hover: #222222;
+  --line: #2a2a2a;
+  --line-strong: #3a3a3a;
+  --field-line: #6e6e6e;
+  --text: #f2f2f2;
+  --text-2: #a6a6a6;
+  --text-3: #8f8f8f;
+  --chip: #262626;
+  --chip-text: #bdbdbd;
+  --track: #262626;
+  --bar: #5a5a5a;
+  --bar-soft: #3a3a3a;
+  --danger: #ff7a7a;
+  --btn: #f2f2f2;
+  --btn-text: #1b1b1b;
+}
+
+[data-theme='dark'][data-neutral='warm'] {
+  color-scheme: dark;
+  --canvas: #151311;
+  --panel: #1c1a17;
+  --inset: #110f0d;
+  --hover: #24211d;
+  --line: #2d2a26;
+  --line-strong: #3e3a35;
+  --field-line: #77716a;
+  --text: #f3efe9;
+  --text-2: #ada69d;
+  --text-3: #968f86;
+  --chip: #292622;
+  --chip-text: #c3bcb2;
+  --track: #292622;
+  --bar: #605a53;
+  --bar-soft: #3e3a35;
+  --danger: #ff7f72;
+  --btn: #f3efe9;
+  --btn-text: #1c1a17;
+}
+
+[data-theme='dark'][data-neutral='cool'] {
+  color-scheme: dark;
+  --canvas: #121417;
+  --panel: #181b1f;
+  --inset: #0e1013;
+  --hover: #1f2328;
+  --line: #272b31;
+  --line-strong: #373c44;
+  --field-line: #6b727c;
+  --text: #eef1f5;
+  --text-2: #a2a9b3;
+  --text-3: #8b929c;
+  --chip: #23272d;
+  --chip-text: #bac1ca;
+  --track: #23272d;
+  --bar: #565d67;
+  --bar-soft: #373c44;
+  --danger: #ff7a85;
+  --btn: #eef1f5;
+  --btn-text: #181b1f;
+}
+
+[data-theme='light'][data-neutral='neutral'], [data-theme='light']:not([data-neutral]) {
+  color-scheme: light;
+  --canvas: #f3f3f1;
+  --panel: #ffffff;
+  --inset: #f7f7f5;
+  --hover: #f0f0ed;
+  --line: #e4e4e1;
+  --line-strong: #cfcfcb;
+  --field-line: #8a8a87;
+  --text: #141414;
+  --text-2: #525252;
+  --text-3: #666666;
+  --chip: #eeeeeb;
+  --chip-text: #454545;
+  --track: #ebebe8;
+  --bar: #9a9a96;
+  --bar-soft: #d6d6d2;
+  --danger: #c02626;
+  --btn: #141414;
+  --btn-text: #ffffff;
+}
+
+[data-theme='light'][data-neutral='warm'] {
+  color-scheme: light;
+  --canvas: #f4f1ec;
+  --panel: #fffdf9;
+  --inset: #f8f5f0;
+  --hover: #f2eee8;
+  --line: #e7e2da;
+  --line-strong: #d3cdc3;
+  --field-line: #8c857a;
+  --text: #1a1612;
+  --text-2: #575049;
+  --text-3: #6b635a;
+  --chip: #efeae3;
+  --chip-text: #48413a;
+  --track: #ece7df;
+  --bar: #9e978c;
+  --bar-soft: #d9d3c9;
+  --danger: #bb2a1f;
+  --btn: #1a1612;
+  --btn-text: #fffdf9;
+}
+
+[data-theme='light'][data-neutral='cool'] {
+  color-scheme: light;
+  --canvas: #f1f3f6;
+  --panel: #ffffff;
+  --inset: #f6f8fa;
+  --hover: #eef1f5;
+  --line: #e1e5ea;
+  --line-strong: #ccd2da;
+  --field-line: #858c96;
+  --text: #11151a;
+  --text-2: #4d5560;
+  --text-3: #626a75;
+  --chip: #eceff3;
+  --chip-text: #424953;
+  --track: #e8ecf1;
+  --bar: #959ca6;
+  --bar-soft: #d2d8e0;
+  --danger: #c0232f;
+  --btn: #11151a;
+  --btn-text: #ffffff;
+}
+
+/* ---------- accents (theme × accent); tint and line follow the neutral palette ---------- */
+[data-theme='dark'][data-accent='blue'], [data-theme='dark']:not([data-accent]), :root:not([data-theme]):not([data-accent]) {
+  --accent: #3b93ff;
+  --accent-text: #80bbff;
+  --accent-tint: color-mix(in srgb, #3b93ff 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #3b93ff 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='blue'], [data-theme='light']:not([data-accent]) {
+  --accent: #1a6fe0;
+  --accent-text: #0b5bc4;
+  --accent-tint: color-mix(in srgb, #1a6fe0 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #1a6fe0 45%, var(--panel));
+}
+
+[data-theme='dark'][data-accent='green'] {
+  --accent: #34c27a;
+  --accent-text: #79dfa8;
+  --accent-tint: color-mix(in srgb, #34c27a 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #34c27a 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='green'] {
+  --accent: #178a50;
+  --accent-text: #0e6d3e;
+  --accent-tint: color-mix(in srgb, #178a50 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #178a50 45%, var(--panel));
+}
+
+[data-theme='dark'][data-accent='amber'] {
+  --accent: #f0a429;
+  --accent-text: #f6c46c;
+  --accent-tint: color-mix(in srgb, #f0a429 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #f0a429 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='amber'] {
+  --accent: #b06a00;
+  --accent-text: #8c5400;
+  --accent-tint: color-mix(in srgb, #b06a00 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #b06a00 45%, var(--panel));
+}
+
+[data-theme='dark'][data-accent='coral'] {
+  --accent: #ff6f52;
+  --accent-text: #ff9e89;
+  --accent-tint: color-mix(in srgb, #ff6f52 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #ff6f52 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='coral'] {
+  --accent: #d2462b;
+  --accent-text: #b03a22;
+  --accent-tint: color-mix(in srgb, #d2462b 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #d2462b 45%, var(--panel));
+}
+
+[data-theme='dark'][data-accent='teal'] {
+  --accent: #22b8b2;
+  --accent-text: #66d8d3;
+  --accent-tint: color-mix(in srgb, #22b8b2 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #22b8b2 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='teal'] {
+  --accent: #0e8a85;
+  --accent-text: #0a6d69;
+  --accent-tint: color-mix(in srgb, #0e8a85 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #0e8a85 45%, var(--panel));
+}
+
+[data-theme='dark'][data-accent='mono'] {
+  --accent: #f2f2f2;
+  --accent-text: #f2f2f2;
+  --accent-tint: color-mix(in srgb, #f2f2f2 10%, var(--panel));
+  --accent-line: color-mix(in srgb, #f2f2f2 45%, var(--panel));
+}
+
+[data-theme='light'][data-accent='mono'] {
+  --accent: #141414;
+  --accent-text: #141414;
+  --accent-tint: color-mix(in srgb, #141414 8%, var(--panel));
+  --accent-line: color-mix(in srgb, #141414 45%, var(--panel));
+}
+
+/* ---------- base ---------- */
 * { box-sizing: border-box; }
 
 html, body {
