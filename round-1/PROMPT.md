@@ -1,10 +1,14 @@
 # Tur 1: Ham prompt
 
-**Kural:** Aşağıdaki prompt'u **olduğu gibi** AI'a verin. Hiçbir şey eklemeyin, hiçbir dosya göstermeyin, ikinci bir mesajla düzeltme istemeyin. Amacımız "hiç bağlam vermezsek AI ne üretiyor?" sorusunu görmek.
+**Kural:** Seçtiğiniz brief'in en altındaki **Ham prompt (Tur 1)** bölümündeki prompt'u **olduğu gibi** AI'a verin. Hiçbir şey eklemeyin, hiçbir dosya göstermeyin, ikinci bir mesajla düzeltme istemeyin. Amacımız "hiç bağlam vermezsek AI ne üretiyor?" sorusunu görmek.
+
+Örnek (Brief 2, Ortak Kasa):
 
 ```text
-Bir kampüs etkinlik web uygulaması için 3 ekran tasarla: etkinlik listesi, etkinlik detayı ve kayıt ekranı. React ile, stilleri de içinde olan tek bir App.jsx dosyası olarak ver. Dosyayı round-1/App.jsx olarak kaydet.
+Ev arkadaşı öğrencilerin ortak giderlerini ve kimin kime borçlu olduğunu takip ettiği bir web uygulaması tasarla. React ile, stilleri de içinde olan tek bir App.jsx dosyası olarak ver. Dosyayı round-1/App.jsx olarak kaydet.
 ```
+
+Agent kullanıyorsanız Tur 1'i repo klasörünün **dışında**, boş bir klasörde çalıştırın ve çıkan `App.jsx`'i `round-1/` içine kopyalayın. Repo içinde çalışan agent `AGENTS.md`'yi okuyup skill'e bakabilir; o zaman Tur 1 "ham" olmaz.
 
 Sohbet arayüzü kullanıyorsanız gelen kodu kendiniz `round-1/App.jsx` dosyasına yapıştırın.
 

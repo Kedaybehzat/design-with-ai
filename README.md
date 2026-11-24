@@ -28,8 +28,8 @@ Bu atölyede bir **React web uygulaması** tasarlayacağız. Herkesin elinde AI 
 
 | Saat | Adım | Ne yapıyorsunuz | Dosya |
 | --- | --- | --- | --- |
-| 14:25 | Kurulum | Fork, araç seçimi, brief'i okuma | [brief/kampus-etkinlik.md](brief/kampus-etkinlik.md) |
-| 14:35 | **Tur 1: Ham prompt** | Tek cümlelik prompt, hiç bağlam yok | [round-1/PROMPT.md](round-1/PROMPT.md) |
+| 14:25 | Kurulum | Fork, araç seçimi, 5 brief'ten birini seçme | [brief/](brief/README.md) |
+| 14:35 | **Tur 1: Ham prompt** | Brief'teki tek cümlelik prompt, hiç bağlam yok | [round-1/PROMPT.md](round-1/PROMPT.md) |
 | 14:50 | Kararlar | Persona, ton, renk, font: hepsini **siz** seçin | [DESIGN.md](DESIGN.md) |
 | 15:05 | **Tur 2: Skill ile** | AI skill'i ve kararlarınızı okuyup tasarlar | [round-2/PROMPT.md](round-2/PROMPT.md) |
 | 15:25 | **Tur 3: Eleştir ve öğret** | Puanla, hedefli geri bildirim ver, öğrendiğini skill'e yaz | [critique/CHECKLIST.md](critique/CHECKLIST.md) |
@@ -45,7 +45,7 @@ design-with-ai/
 │   ├── theme.css               ← Koyu ve açık tema token'ları (kontrastı kontrol edilmiş)
 │   └── patterns.md             ← Bileşen tarifleri: tablo, filtre, kart, buton, form
 ├── DESIGN.md                   ← Ekibinizin kararları (persona, ton, renk, font)
-├── brief/kampus-etkinlik.md    ← Ne tasarlıyoruz
+├── brief/                      ← 5 brief: öğrenci sorunlarını çözen tek sayfalık uygulamalar
 ├── round-1/App.jsx             ← Ham prompt çıktısı
 ├── round-2/App.jsx             ← Skill + DESIGN.md çıktısı
 ├── round-3/App.jsx             ← Eleştiri sonrası çıktı

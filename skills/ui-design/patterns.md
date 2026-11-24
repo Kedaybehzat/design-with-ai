@@ -87,6 +87,25 @@ Selecting a row opens its detail in place instead of on a new page, when the det
 
 The detail holds numbered sub-rows (step number in `--text-3`, name, status chip, bar) and a row of ghost pill buttons with the actions. A short meta note sits on the right in `--text-3`.
 
+## Detail drawer and modal
+
+Detail opens without leaving the page.
+
+```css
+.drawer  { position: fixed; top: 56px; right: 0; bottom: 0; width: 420px; z-index: 20;
+           background: var(--panel); border-left: 1px solid var(--line); display: grid; grid-template-rows: auto 1fr auto; }
+.drawer header, .drawer footer { padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--line); }
+.drawer footer { border-bottom: 0; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: var(--space-2); }
+.drawer .content { overflow: auto; padding: var(--space-5); display: grid; gap: var(--space-5); align-content: start; }
+.scrim   { position: fixed; inset: 0; z-index: 30; background: rgb(0 0 0 / 0.45); display: grid; place-items: center; }
+.modal   { width: min(560px, calc(100vw - 48px)); background: var(--panel); border: 1px solid var(--line);
+           border-radius: var(--radius-lg); }
+```
+
+- A drawer is for reading and quick edits on one item; the list stays visible beside it. A modal is for creating something new.
+- Both close with Esc, with a close button in the header, and by clicking the scrim (modal only). Focus moves into them when they open.
+- The drawer's border is the same neutral line as every other border; it is not a colored stripe.
+
 ## Chips
 
 ```css
@@ -161,7 +180,7 @@ Pick the layout from the main job of the screen, not from habit. Two different p
 | Main job | Layout |
 | --- | --- |
 | Scan many items, act on one | **Table + detail pane:** table fills the main area, detail opens in a right pane (360 to 420 px). |
-| Move items through stages | **Board:** one column per stage, compact item rows inside, counts in column headers. |
+| Move items through stages | **Board:** one column per stage, counts in column headers. A column is a single panel and its items are rows directly inside it, separated by hairlines: no box inside the column, no card per item. |
 | Read or edit one item at a time | **List / detail split:** narrow list on the left (300 to 360 px), the item fills the rest. |
 | Things happen at times | **Timeline or calendar:** time runs left to right or top to bottom; items sit on it. |
 | Fill in something once | **Focused form:** a single column (max 720 px) with a summary beside it. |

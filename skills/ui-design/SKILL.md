@@ -27,9 +27,9 @@ Do not use it for pure backend work or for copy that has no interface.
 | `theme.css` | The tokens and five dials (theme, neutral, accent, shape, density) for dark and light, every combination contrast-checked. Start from it. |
 | `patterns.md` | Recipes for the shell, layouts, filters, stat tiles, tables, selected rows, chips, buttons, forms. |
 | `DESIGN.md` (repo root) | The team's decisions: persona, tone, theme, accent, and changes to the base. |
-| The brief | What the screens are for (for the workshop: `brief/kampus-etkinlik.md`). |
+| The brief | What the product is for. In the workshop, `DESIGN.md` names one of the five files in `brief/`. |
 
-If `DESIGN.md` is missing, or its **Persona** or **Ton** sections still say `TODO`, stop and ask the user to fill them in. Never invent a persona on their behalf. Visual fields left open (`AI seçsin`) are yours to decide in step 2, with a reason.
+If `DESIGN.md` is missing, or its **Brief**, **Persona** or **Ton** sections still say `TODO`, stop and ask the user to fill them in. Never invent a persona on their behalf. Visual fields left open (`AI seçsin`) are yours to decide in step 2, with a reason.
 
 ## Base style
 

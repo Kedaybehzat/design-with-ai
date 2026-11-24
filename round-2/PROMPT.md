@@ -8,7 +8,7 @@ Repo klasöründe agent'ı açın ve şunu yazın:
 
 ```text
 skills/ui-design/SKILL.md dosyasını oku ve adımlarını sırayla uygula.
-Kararlar için DESIGN.md'yi, içerik için brief/kampus-etkinlik.md'yi kullan.
+Kararlar için DESIGN.md'yi, içerik için DESIGN.md'de seçtiğimiz brief dosyasını kullan.
 Çıktıyı round-2/App.jsx ve round-2/styles.css olarak yaz. Bitince SKILL.md'deki Verification listesine göre rapor ver.
 ```
 
@@ -20,7 +20,7 @@ Kararlar için DESIGN.md'yi, içerik için brief/kampus-etkinlik.md'yi kullan.
 2. `skills/ui-design/theme.css`
 3. `skills/ui-design/patterns.md`
 4. `DESIGN.md`
-5. `brief/kampus-etkinlik.md`
+5. Seçtiğiniz brief (örn. `brief/02-ortak-kasa.md`)
 
 Sonra şunu yazın:
 

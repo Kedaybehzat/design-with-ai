@@ -5,14 +5,16 @@
 
 **Grup:** TODO: grup adı ve üyeler
 
+**Brief:** TODO: seçtiğiniz brief dosyası (örn. `brief/02-ortak-kasa.md`). Liste: [brief/README.md](brief/README.md)
+
 ## 1. Persona
 
 Uygulamayı kim kullanıyor? Tek bir gerçekçi kişi yazın.
 
-- **İsim, yaş, bölüm:** TODO (örn. Elif, 20, Bilgisayar Mühendisliği 2. sınıf)
-- **Ne istiyor:** TODO (örn. derslerle çakışmayan, arkadaşlarıyla gidebileceği etkinlikler)
-- **Ne onu rahatsız ediyor:** TODO (örn. etkinlikleri Instagram story'lerinden kaçırmak)
-- **Uygulamayı ne zaman açıyor:** TODO (örn. kütüphanede, dizüstünde, iki ders arasında)
+- **İsim, yaş, bölüm:** TODO (örn. Ece, 21, İşletme 3. sınıf)
+- **Ne istiyor:** TODO (örn. ay sonunda ev arkadaşlarıyla tartışmadan hesaplaşmak)
+- **Ne onu rahatsız ediyor:** TODO (örn. kimin neyi ödediğini WhatsApp'ta geriye kaydırarak aramak)
+- **Uygulamayı ne zaman açıyor:** TODO (örn. marketten dönünce ve ay sonunda, dizüstünde)
 
 ## 2. Ton
 
@@ -43,7 +45,7 @@ Listede olmayan bir renk isterseniz hex kodunu yazın ve iki temada kontrastın�
 
 Beğendiğiniz 1–2 uygulama veya site ve **neyini** beğendiğiniz:
 
-- TODO (örn. Luma: etkinlik listesinde tarihin önde olması)
+- TODO (örn. Splitwise: kimin kime borçlu olduğunu tek satırda göstermesi)
 
 ## 5. Kesinlikle olmasın
 
