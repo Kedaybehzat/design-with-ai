@@ -222,4 +222,9 @@ Example:
   **Örnek:** `Per 3 Ara · 13:30` ilk sütunda, etkinlik adı ikinci sütunda.
 -->
 
-- _No team rules yet._
+- **Kural:** Hardal (`#E1AD01`) gibi açık ve parlak bir vurgu, açık temada yazı ya da ince çizgi rengi olmaz; dolgu olarak kullanılır ve üstüne koyu yazı gelir. İnce işaretler ve vurgulu yazı aynı tonun koyusuyla çizilir.
+  **Neden:** `#E1AD01` beyaz zeminde 2.0:1 kontrast veriyor, okunmuyor; ama dolgu olarak koyu yazıyla 8.7:1 veriyor ve rengi gerçekten "hardal" gösteriyor.
+  **Örnek:** Seçili saat ve "Senin" masası `#E1AD01` dolgu + `#1a1612` yazı; açık temada başlıktaki vurgu `#7a5d00`, odak halkası `#9a7700`.
+- **Kural:** Ekranın asıl işi ilk bakışta, kaydırmadan görünür. Üstüne büyük stat kutucukları ve etiketli kontrol satırları yığma; kendini açıklayan kontrollere ("Zemin, 1. kat", "09 … 22", "Prizli") ayrıca etiket koyma, özet sayıları tek satırda ver.
+  **Neden:** Persona uygulamayı istatistik okumak için değil, boş masa bulmak için açıyor; etiketler ve kutucuklar planı ekranın altına itip kalabalık gösteriyordu.
+  **Örnek:** "Kat / Saat / İstek" etiketleri kaldırıldı; üç kutucuk yerine `Binada şu an 312 / 420 kişi · 16:00'da boş 23 / 144 masa · En sakin saat 22:00`; dolu masalarda ikon yok, sadece dolgu.

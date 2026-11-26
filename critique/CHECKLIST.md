@@ -6,17 +6,17 @@ AI'ın kendi raporuna güvenmeyin; ekranlara **siz** bakın.
 
 | # | Madde | Tur 1 | Tur 2 | Tur 3 |
 | --- | --- | --- | --- | --- |
-| 1 | **Hiyerarşi:** Her ekranda gözün ilk gittiği tek bir şey var. | | | |
-| 2 | **Ana aksiyon:** Her ekranda ne yapmam gerektiği 2 saniyede belli. | | | |
-| 3 | **Kontrast:** Metinler **iki temada da** rahat okunuyor (4.5:1, [kontrol et](https://webaim.org/resources/contrastchecker/)). | | | |
-| 4 | **Renk:** Gri tonlar taşıyor; vurgu rengi sadece seçili / güncel olanda. | | | |
-| 5 | **Tipografi:** Tek aile, en fazla 5 boyut, rakamlar sütunda hizalı. | | | |
-| 6 | **Boşluk:** Ait olan şeyler yakın, gruplar arası nefes alıyor. | | | |
-| 7 | **Tıklama ve durumlar:** Butonlar rahat tıklanır (ana buton ≥ 44px); hover, odak ve boş/hata durumları var. | | | |
-| 8 | **Form:** Alanların görünür etiketi var, hata durumu düşünülmüş. | | | |
-| 9 | **Özgünlük:** "AI yaptı" belli değil (gradient, emoji ikon, her şey ortalı vb. yok). | | | |
-| 10 | **Persona:** Bu tasarım DESIGN.md'deki kişiye gerçekten uygun. | | | |
-| | **Toplam (20)** | | | |
+| 1 | **Hiyerarşi:** Her ekranda gözün ilk gittiği tek bir şey var. | 0 | 1 | 2 |
+| 2 | **Ana aksiyon:** Her ekranda ne yapmam gerektiği 2 saniyede belli. | 1 | 1 | 1 |
+| 3 | **Kontrast:** Metinler **iki temada da** rahat okunuyor (4.5:1, [kontrol et](https://webaim.org/resources/contrastchecker/)). | 0 | 2 | 2 |
+| 4 | **Renk:** Gri tonlar taşıyor; vurgu rengi sadece seçili / güncel olanda. | 0 | 2 | 2 |
+| 5 | **Tipografi:** Tek aile, en fazla 5 boyut, rakamlar sütunda hizalı. | 1 | 1 | 1 |
+| 6 | **Boşluk:** Ait olan şeyler yakın, gruplar arası nefes alıyor. | 1 | 1 | 2 |
+| 7 | **Tıklama ve durumlar:** Butonlar rahat tıklanır (ana buton ≥ 44px); hover, odak ve boş/hata durumları var. | 1 | 2 | 2 |
+| 8 | **Form:** Alanların görünür etiketi var, hata durumu düşünülmüş. | 1 | 2 | 2 |
+| 9 | **Özgünlük:** "AI yaptı" belli değil (gradient, emoji ikon, her şey ortalı vb. yok). | 0 | 2 | 2 |
+| 10 | **Persona:** Bu tasarım DESIGN.md'deki kişiye gerçekten uygun. | 0 | 2 | 2 |
+| | **Toplam (20)** | **5** | **16** | **18** |
 
 ## Tur 3: Hedefli geri bildirim
 
@@ -30,9 +30,13 @@ Tur 2'de en düşük puan alan 3 madde için AI'a **somut** geri bildirim verin.
 
 Yazdığınız geri bildirimler:
 
-1. TODO
-2. TODO
-3. TODO
+1. **Renk:** Vurgu amber yerine bir tık koyu hardal `#E1AD01` olsun. Açık temada beyaz zeminde 2.0:1 kaldığı için yazı olarak değil dolgu olarak kullan, üstüne koyu yazı koy (seçili saat, "Senin" masası, "Vize haftası" etiketi); ince işaretler ve başlık vurgusu aynı tonun koyusuyla.
+2. **Boşluk / hiyerarşi:** "Kat", "Saat", "İstek" etiketlerini kaldır; kat düğmeleri ve istekleri tek satıra al, saatler altında kalsın. Kontroller kendini zaten anlatıyor, etiket sütunu sadece kalabalık yapıyor.
+3. **Hiyerarşi:** Üç büyük stat kutucuğunu başlığın altında tek bir özet satırına indir ve dolu masalardaki insan ikonunu kaldır (dolu = dolgulu kare). Kat planı ilk bakışta, kaydırmadan görünsün.
+
+**Puanlama notları (Tur 3'te kalan eksikler):**
+- *Ana aksiyon (1):* Plandan masa seçince sağ panel kendiliğinden açılmıyor; "Rezerve et" düğmesi kapalı sekmenin arkasında kalıyor. Masa seçilince panel "Masa seç" sekmesinde açılmalı.
+- *Tipografi (1):* Ekip kararıyla iki aile var (serif + grotesk); checklist tek aile istiyor.
 
 ## Tur 3: Skill'e işleyin
 
