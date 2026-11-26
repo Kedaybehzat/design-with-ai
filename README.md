@@ -33,8 +33,10 @@ Bu atölyede bir **React web uygulaması** tasarlayacağız. Herkesin elinde AI 
 | 14:50 | Kararlar | Persona, ton, renk, font: hepsini **siz** seçin | [DESIGN.md](DESIGN.md) |
 | 15:05 | **Tur 2: Skill ile** | AI skill'i ve kararlarınızı okuyup tasarlar | [round-2/PROMPT.md](round-2/PROMPT.md) |
 | 15:25 | **Tur 3: Eleştir ve öğret** | Puanla, hedefli geri bildirim ver, öğrendiğini skill'e yaz | [critique/CHECKLIST.md](critique/CHECKLIST.md) |
-| 15:45 | Galeri hazırlığı | Tur 1 ve Tur 3 ekran görüntülerini yan yana koyun | [RESULTS.md](RESULTS.md) |
+| 15:45 | Galeri hazırlığı | Tur 1 ve Tur 3 ekran görüntülerini yan yana koyun, push edin, **fork linkinizi forma girin** | [RESULTS.md](RESULTS.md) · [Form](https://forms.gle/WTen8QPpZWA5A7DD7) |
 | 16:00 | Sunum | Her grup 1 dakika: önce/sonra ve öğrendiği 1 kural | |
+
+> **Bitirmeden önce:** son commit'i forkunuza push edin ve fork linkinizi şu forma girin: **https://forms.gle/WTen8QPpZWA5A7DD7**
 
 ## Repo yapısı
 

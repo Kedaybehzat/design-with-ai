@@ -13,3 +13,4 @@ round-2'deki tasarımı şu geri bildirimlere göre düzelt ve round-3/App.jsx v
 ```
 
 4. Tarayıcıda `http://localhost:5173/?round=3` adresini açın, ekran görüntüsünü `round-3/screenshot.png` olarak kaydedin ve commit atın: `git add -A && git commit -m "Tur 3: eleştiri ve skill güncellemesi"`.
+5. Forkunuza push edin (`git push`) ve fork linkinizi forma girin: **https://forms.gle/WTen8QPpZWA5A7DD7**

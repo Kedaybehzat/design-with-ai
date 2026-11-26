@@ -1,5 +1,7 @@
 # Sonuçlarımız
 
+> Bitirince forkunuza push edin ve fork linkinizi forma girin: **https://forms.gle/WTen8QPpZWA5A7DD7**
+
 **Grup:** TODO
 
 | | Tur 1: Ham prompt | Tur 3: Skill + eleştiri |
